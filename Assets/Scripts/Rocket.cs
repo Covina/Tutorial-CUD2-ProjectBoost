@@ -19,6 +19,15 @@ public class Rocket : MonoBehaviour {
     // to play the thrust sound
     private AudioSource audioSource;
 
+    // SFX: Thrust
+    [SerializeField] AudioClip mainEngine;
+
+    // Explosion
+    [SerializeField] AudioClip explosion;
+
+    // Success
+    [SerializeField] AudioClip levelSuccess;
+
 
     enum State
     {
@@ -45,8 +54,8 @@ public class Rocket : MonoBehaviour {
 	void Update () {
 
         if(state == State.Alive) {
-            Thrust();
-            Rotate();
+            RespondToThrustInput();
+            RespondToRotateInput();
         }
 
 
@@ -54,23 +63,12 @@ public class Rocket : MonoBehaviour {
 
 
     // 
-    private void Thrust()
+    private void RespondToThrustInput()
     {
         // check for thrust
         if (Input.GetKey(KeyCode.Space))
         {
-
-            // Add force only in the direction of where its pointing (rotation)
-            // Vector3.up = (0,1,0)  in the Y Axis
-            rigidBody.AddRelativeForce(Vector3.up * thrustBoost);
-
-            // check if its already playing, and if not, play it
-            if (audioSource.isPlaying == false)
-            {
-
-                audioSource.Play();
-
-            }
+            ApplyThrust();
 
         }
         else
@@ -78,6 +76,21 @@ public class Rocket : MonoBehaviour {
             // player is not thrusting, end sound
             audioSource.Stop();
 
+        }
+    }
+
+    //
+    private void ApplyThrust()
+    {
+        // Add force only in the direction of where its pointing (rotation)
+        // Vector3.up = (0,1,0)  in the Y Axis
+        rigidBody.AddRelativeForce(Vector3.up * thrustBoost);
+
+        // check if its already playing, and if not, play it
+        if (audioSource.isPlaying == false)
+        {
+
+            audioSource.PlayOneShot(mainEngine);
 
         }
     }
@@ -85,7 +98,7 @@ public class Rocket : MonoBehaviour {
     /// <summary>
     /// Controlling the rotation of the ship
     /// </summary>
-    private void Rotate()
+    private void RespondToRotateInput()
     {
 
         // disable physics on rotation
@@ -125,6 +138,7 @@ public class Rocket : MonoBehaviour {
         // Prevent extra processing if we're dead
         if (state != State.Alive) { return; }
 
+        Debug.Log("Player hit something");
 
         // What did we run into?
         switch(collision.gameObject.tag)
@@ -134,21 +148,12 @@ public class Rocket : MonoBehaviour {
                 break;
 
             case "Hazard":
-                print("Rocket hit a Hazard: " + collision.gameObject.name);
-
-                state = State.Dying;
-
-                // load next scene
-                Invoke("LoadFirstScene", 3.0f);
+                print("Rocket hit Hazard: " + collision.gameObject.name);
+                PlayerDeath();
                 break;
 
             case "Finish":
-                print("Hit the finish: " + collision.gameObject.name);
-
-                state = State.Transcending;
-
-                // load next scene
-                Invoke("LoadNextScene", 1.0f);
+                PlayerSuccess();
                 break;
 
 
@@ -160,12 +165,32 @@ public class Rocket : MonoBehaviour {
 
     }
 
-    private void LoadNextScene()
+    private void PlayerSuccess()
+    {
+        state = State.Transcending;
+
+        audioSource.PlayOneShot(levelSuccess);
+
+        // load next scene
+        Invoke("LoadNextLevel", 2.0f);
+    }
+
+    private void PlayerDeath()
+    {
+        state = State.Dying;
+
+        audioSource.PlayOneShot(explosion);
+
+        Invoke("LoadFirstLevel", 3.0f);
+    }
+
+    private void LoadNextLevel()
     {
         SceneManager.LoadScene(1);
     }
 
 
+    //
     private void LoadFirstLevel()
     {
         SceneManager.LoadScene(0);
