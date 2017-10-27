@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
@@ -19,7 +20,15 @@ public class Rocket : MonoBehaviour {
     private AudioSource audioSource;
 
 
+    enum State
+    {
+        Alive,
+        Dying,
+        Transcending
 
+    }
+
+    State state = State.Alive;
 
 	// Use this for initialization
 	void Start () {
@@ -35,8 +44,11 @@ public class Rocket : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Thrust();
-        Rotate();
+        if(state == State.Alive) {
+            Thrust();
+            Rotate();
+        }
+
 
     }
 
@@ -109,8 +121,12 @@ public class Rocket : MonoBehaviour {
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        
 
+        // Prevent extra processing if we're dead
+        if (state != State.Alive) { return; }
+
+
+        // What did we run into?
         switch(collision.gameObject.tag)
         {
             case "Friendly":
@@ -119,10 +135,20 @@ public class Rocket : MonoBehaviour {
 
             case "Hazard":
                 print("Rocket hit a Hazard: " + collision.gameObject.name);
+
+                state = State.Dying;
+
+                // load next scene
+                Invoke("LoadFirstScene", 3.0f);
                 break;
 
-            case "Fuel":
-                print("Rocket picked up Fuel: " + collision.gameObject.name);
+            case "Finish":
+                print("Hit the finish: " + collision.gameObject.name);
+
+                state = State.Transcending;
+
+                // load next scene
+                Invoke("LoadNextScene", 1.0f);
                 break;
 
 
@@ -134,5 +160,16 @@ public class Rocket : MonoBehaviour {
 
     }
 
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 
+
+    private void LoadFirstLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
+
+
