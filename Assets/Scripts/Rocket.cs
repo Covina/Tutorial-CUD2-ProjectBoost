@@ -28,6 +28,12 @@ public class Rocket : MonoBehaviour {
     // Success
     [SerializeField] AudioClip levelSuccess;
 
+    // Particle effects for Rocket Ship
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem deathParticles;
+
+
 
     enum State
     {
@@ -75,7 +81,7 @@ public class Rocket : MonoBehaviour {
         {
             // player is not thrusting, end sound
             audioSource.Stop();
-
+            mainEngineParticles.Stop();
         }
     }
 
@@ -93,6 +99,9 @@ public class Rocket : MonoBehaviour {
             audioSource.PlayOneShot(mainEngine);
 
         }
+
+        // fire the particles
+        mainEngineParticles.Play();
     }
 
     /// <summary>
@@ -171,6 +180,8 @@ public class Rocket : MonoBehaviour {
 
         audioSource.PlayOneShot(levelSuccess);
 
+        successParticles.Play();
+
         // load next scene
         Invoke("LoadNextLevel", 2.0f);
     }
@@ -180,6 +191,8 @@ public class Rocket : MonoBehaviour {
         state = State.Dying;
 
         audioSource.PlayOneShot(explosion);
+
+        deathParticles.Play();
 
         Invoke("LoadFirstLevel", 3.0f);
     }

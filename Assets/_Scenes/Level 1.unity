@@ -1267,7 +1267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1001613023948106, guid: 20bfb33e60a017347b83b669118df32c, type: 2}
       propertyPath: m_Name
-      value: Hazard 2
+      value: OscillatingHazard
       objectReference: {fileID: 0}
     - target: {fileID: 4641649463543148, guid: 20bfb33e60a017347b83b669118df32c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1284,6 +1284,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20bfb33e60a017347b83b669118df32c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2111479143 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1001613023948106, guid: 20bfb33e60a017347b83b669118df32c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2107102786}
+--- !u!114 &2111479144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2111479143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a65fc67e949fd946bfe114d76c5a6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 1, y: 1, z: 0}
+  movementFactor: 0
 --- !u!4 &2119648987 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af,
