@@ -573,8 +573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d82e2ef3c742a94997aad77dcee6be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustBoost: 1.2
-  rotationBoost: 75
   mainEngine: {fileID: 8300000, guid: e3483fcb94ecd1446901a26deb77a9f0, type: 3}
   explosion: {fileID: 8300000, guid: b772ec799eb63464f86c6a3295182d6a, type: 3}
   levelSuccess: {fileID: 8300000, guid: 40e70804d9ac91944bf73042cc0b67a5, type: 3}

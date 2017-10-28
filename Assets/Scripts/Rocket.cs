@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour {
 
     // multiplier on thrust
-    [SerializeField]
-    private float thrustBoost = 1.2f;
+    //[SerializeField]
+    private float thrustBoost = 2.0f;
 
     // how fast it should rotate
-    [SerializeField]
+    //[SerializeField]
     private float rotationBoost = 75.0f;
 
     // The Rocket Ship
@@ -33,6 +33,9 @@ public class Rocket : MonoBehaviour {
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
 
+    // Load delays
+    [SerializeField] float deathLoadDelay = 3.0f;
+    [SerializeField] float levelLoadDelay = 2.0f;
 
 
     enum State
@@ -183,7 +186,7 @@ public class Rocket : MonoBehaviour {
         successParticles.Play();
 
         // load next scene
-        Invoke("LoadNextLevel", 2.0f);
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     private void PlayerDeath()
@@ -194,7 +197,7 @@ public class Rocket : MonoBehaviour {
 
         deathParticles.Play();
 
-        Invoke("LoadFirstLevel", 3.0f);
+        Invoke("LoadFirstLevel", deathLoadDelay);
     }
 
     private void LoadNextLevel()

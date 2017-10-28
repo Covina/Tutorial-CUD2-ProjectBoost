@@ -793,6 +793,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114355717878679948, guid: 0c4867c55141f0845aa8804bc0a2f29e,
+        type: 2}
+      propertyPath: thrustBoost
+      value: 1.64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c4867c55141f0845aa8804bc0a2f29e, type: 2}
   m_IsPrefabParent: 0
@@ -1297,10 +1302,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2111479143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a65fc67e949fd946bfe114d76c5a6dc, type: 3}
+  m_Script: {fileID: 11500000, guid: b69cc37440a194144bc0a88e1df6a9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 1, y: 1, z: 0}
+  movementVector: {x: 20, y: 0, z: 0}
+  period: 2
   movementFactor: 0
 --- !u!4 &2119648987 stripped
 Transform:
