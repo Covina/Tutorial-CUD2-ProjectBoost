@@ -5,7 +5,7 @@ using UnityEngine;
 public class HazardOscillator : MonoBehaviour {
 
     // controls for the oscillation distance
-    [SerializeField] private Vector3 movementVector = new Vector3(10f, 10f, 10f);
+    [SerializeField] private Vector3 movementVector = new Vector3(10f, 0f, 0f);
 
     // length of SIN wave until it repeats
     [SerializeField] float period = 2f;

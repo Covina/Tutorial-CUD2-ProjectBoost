@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
+  
+
     // multiplier on thrust
     //[SerializeField]
-    private float thrustBoost = 2.0f;
+    private float thrustBoost = 2.75f;
 
     // how fast it should rotate
     //[SerializeField]
-    private float rotationBoost = 75.0f;
+    private float rotationBoost = 110.0f;
 
     // The Rocket Ship
     private Rigidbody rigidBody;
@@ -56,6 +58,8 @@ public class Rocket : MonoBehaviour {
 
         // Get reference to the audio source component
         audioSource = GetComponent<AudioSource>();
+
+        
 
 	}
 	
