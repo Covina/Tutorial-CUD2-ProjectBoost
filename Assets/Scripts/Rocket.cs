@@ -11,6 +11,9 @@ public class Rocket : MonoBehaviour {
     //[SerializeField]
     private float thrustBoost = 2.75f;
 
+    // how much fuel should we burn
+    private float fuelConsumptionIncrement = 1.0f;
+
     // how fast it should rotate
     //[SerializeField]
     private float rotationBoost = 110.0f;
@@ -64,10 +67,12 @@ public class Rocket : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
-        if(state == State.Alive) {
-            RespondToThrustInput();
+		if (state == State.Alive) {
+
+			RespondToThrustInput ();
             RespondToRotateInput();
         }
 
@@ -79,7 +84,7 @@ public class Rocket : MonoBehaviour {
     private void RespondToThrustInput()
     {
         // check for thrust
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && PlayerManager.instance.FuelCurrentValue > 0)
         {
             ApplyThrust();
 
@@ -109,7 +114,21 @@ public class Rocket : MonoBehaviour {
 
         // fire the particles
         mainEngineParticles.Play();
+
+
+        // Spend Fuel
+		SpendFuel(fuelConsumptionIncrement * Time.deltaTime);
+
+
     }
+
+    // Reduce the fuel
+    private void SpendFuel (float amount)
+	{
+		// Decrement by the consumption amount
+		PlayerManager.instance.FuelCurrentValue -= amount;
+
+	}
 
     /// <summary>
     /// Controlling the rotation of the ship

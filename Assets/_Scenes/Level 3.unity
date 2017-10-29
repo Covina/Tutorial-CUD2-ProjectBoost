@@ -118,7 +118,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -14.48
+      value: -20.93
       objectReference: {fileID: 0}
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalPosition.y
@@ -665,6 +665,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c4867c55141f0845aa8804bc0a2f29e, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &669245895 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4351239604589156, guid: 0c4867c55141f0845aa8804bc0a2f29e,
+    type: 2}
+  m_PrefabInternal: {fileID: 669245894}
 --- !u!1001 &677797809
 Prefab:
   m_ObjectHideFlags: 0
@@ -877,11 +882,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af,
     type: 2}
   m_PrefabInternal: {fileID: 1400695379}
---- !u!4 &922696485 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4937996941025568, guid: 0c4867c55141f0845aa8804bc0a2f29e,
-    type: 2}
-  m_PrefabInternal: {fileID: 669245894}
 --- !u!4 &930011149 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af,
@@ -896,7 +896,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4647120198361462, guid: 814793ee3c7d0ba49872685d2878d046, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 43.04
+      value: 41.515
       objectReference: {fileID: 0}
     - target: {fileID: 4647120198361462, guid: 814793ee3c7d0ba49872685d2878d046, type: 2}
       propertyPath: m_LocalPosition.y
@@ -929,6 +929,10 @@ Prefab:
     - target: {fileID: 4647120198361462, guid: 814793ee3c7d0ba49872685d2878d046, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647120198361462, guid: 814793ee3c7d0ba49872685d2878d046, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 16.187046
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814793ee3c7d0ba49872685d2878d046, type: 2}
@@ -1029,7 +1033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1713806016}
-  - {fileID: 922696485}
+  - {fileID: 669245895}
   - {fileID: 1787159303}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1258,11 +1262,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.352
+      value: 22.4
       objectReference: {fileID: 0}
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.067
+      value: 8.746
       objectReference: {fileID: 0}
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1308,7 +1312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalScale.y
-      value: 22.120924
+      value: 25.258543
       objectReference: {fileID: 0}
     - target: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af, type: 2}
       propertyPath: m_LocalScale.z
@@ -1575,24 +1579,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20bfb33e60a017347b83b669118df32c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2111479143 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1001613023948106, guid: 20bfb33e60a017347b83b669118df32c,
-    type: 2}
-  m_PrefabInternal: {fileID: 2107102786}
---- !u!114 &2111479144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2111479143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69cc37440a194144bc0a88e1df6a9b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementVector: {x: 20, y: 0, z: 0}
-  period: 2
 --- !u!4 &2119648987 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4088162522465642, guid: 8d310b6ef0e08e142b78d11c92bc56af,
