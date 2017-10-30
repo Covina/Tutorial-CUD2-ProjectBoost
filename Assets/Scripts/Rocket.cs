@@ -69,13 +69,12 @@ public class Rocket : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-
+		// if the player is alive
 		if (state == State.Alive) {
 
 			RespondToThrustInput ();
             RespondToRotateInput();
         }
-
 
     }
 
@@ -173,7 +172,7 @@ public class Rocket : MonoBehaviour {
         // Prevent extra processing if we're dead
         if (state != State.Alive) { return; }
 
-        Debug.Log("Player hit something");
+        //Debug.Log("Player hit something");
 
         // What did we run into?
         switch(collision.gameObject.tag)
@@ -184,11 +183,11 @@ public class Rocket : MonoBehaviour {
 
             case "Hazard":
                 print("Rocket hit Hazard: " + collision.gameObject.name);
-                PlayerDeath();
+                StartCoroutine( PlayerDeath() );
                 break;
 
             case "Finish":
-                PlayerSuccess();
+                StartCoroutine( PlayerSuccess() );
                 break;
 
 
@@ -200,40 +199,57 @@ public class Rocket : MonoBehaviour {
 
     }
 
-    private void PlayerSuccess()
+
+    /// <summary>
+    /// Handles when the player succeeds
+    /// </summary>
+    /// <returns>The success.</returns>
+    private IEnumerator PlayerSuccess()
     {
         state = State.Transcending;
 
+		// stop all thrust actvity
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+
+        // Play success sound
         audioSource.PlayOneShot(levelSuccess);
 
         successParticles.Play();
 
-        // load next scene
-        Invoke("LoadNextLevel", levelLoadDelay);
+
+		yield return new WaitForSeconds(levelLoadDelay);
+
+		SceneNavigationController.instance.LoadNextLevel();
+
     }
 
-    private void PlayerDeath()
+
+    /// <summary>
+    /// Handles when the player dies
+    /// </summary>
+    /// <returns>The death.</returns>
+    private IEnumerator PlayerDeath()
     {
         state = State.Dying;
 
+		// stop all thrust actvity
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+
+        // Play explosion sound
         audioSource.PlayOneShot(explosion);
 
         deathParticles.Play();
 
-        Invoke("LoadFirstLevel", deathLoadDelay);
-    }
+		yield return new WaitForSeconds(deathLoadDelay);
 
-    private void LoadNextLevel()
-    {
-        SceneManager.LoadScene(1);
-    }
+		SceneNavigationController.instance.ReloadLevel();
 
 
-    //
-    private void LoadFirstLevel()
-    {
-        SceneManager.LoadScene(0);
     }
+
+
 }
 
 

@@ -40,16 +40,16 @@ public class FallingObjectSpawner : MonoBehaviour {
 
     private void SpawnRock()
     {
-        Debug.Log("SpawnRock called");
+        //Debug.Log("SpawnRock called");
 
         // small randomization to rock spawn on the X
         Transform rockSpawnTransform = transform;
 
+        // small randomization in X axis
         Vector3 temp = rockSpawnTransform.position;
-
         temp.x += Random.Range(-2.0f, 2.0f);
-
         rockSpawnTransform.position = temp;
+
 
         // parent the object under Container
         GameObject rock = Instantiate(rockObject, rockSpawnTransform) as GameObject;

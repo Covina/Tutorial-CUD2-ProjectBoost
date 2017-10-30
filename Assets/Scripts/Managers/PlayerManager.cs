@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour {
 
 
 	// Fuel tank Min and Max Capacities
-	public float FuelMaxCapacity = 10.0f;
+	public float FuelMaxCapacity = 8.0f;
 	public float FuelMinCapacity = 0.0f;
 
 	// Get/Set for current fuel value;

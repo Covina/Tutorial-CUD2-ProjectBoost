@@ -303,7 +303,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930634168366750}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 0.15
   m_Drag: 0.3
   m_AngularDrag: 0.1
   m_UseGravity: 1
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d82e2ef3c742a94997aad77dcee6be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainEngine: {fileID: 8300000, guid: e3483fcb94ecd1446901a26deb77a9f0, type: 3}
+  mainEngine: {fileID: 8300000, guid: 8de1ee09084304441bca65599c23e3d1, type: 3}
   explosion: {fileID: 8300000, guid: b772ec799eb63464f86c6a3295182d6a, type: 3}
   levelSuccess: {fileID: 8300000, guid: 40e70804d9ac91944bf73042cc0b67a5, type: 3}
   mainEngineParticles: {fileID: 198044101884434284}

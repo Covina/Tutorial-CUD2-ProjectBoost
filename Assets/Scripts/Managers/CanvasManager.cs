@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour {
 
-	public static CanvasManager instance;
+	//public static CanvasManager instance;
+
+	private Text levelValueText;
 
 	private Slider fuelSlider;
+
+	private Text fuelGaugeMaxValueText;
 
 
 	// Use this for initialization
 	void Start () {
 
-		// Get referenec to slider object
-		fuelSlider = GameObject.Find("FuelTankSlider").GetComponent<Slider>();
 
-		// Set slider Max value
-		fuelSlider.maxValue = PlayerManager.instance.FuelMaxCapacity;
+		levelValueText = GameObject.Find("LevelValue").GetComponent<Text>();
 
-		// Set Slider Min value
-		fuelSlider.minValue = PlayerManager.instance.FuelMinCapacity;
+		InitializeFuelGauge ();
 
-		// Start Slider at max
-		fuelSlider.value = PlayerManager.instance.FuelMaxCapacity;
+		UpdateHUDCurrentLevel ();
 
-		// Set Player current Value
-		PlayerManager.instance.FuelCurrentValue = PlayerManager.instance.FuelMaxCapacity;
 
 	}
 
@@ -49,4 +47,42 @@ public class CanvasManager : MonoBehaviour {
 	}
 
 
+
+
+	/// <summary>
+	/// Initializes the fuel gauge.
+	/// </summary>
+	private void InitializeFuelGauge ()
+	{
+		// Get reference to slider object
+		fuelSlider = GameObject.Find ("FuelTankSlider").GetComponent<Slider> ();
+
+
+		// Set slider Max value
+		fuelSlider.maxValue = PlayerManager.instance.FuelMaxCapacity;
+
+		// Set Slider Min value
+		fuelSlider.minValue = PlayerManager.instance.FuelMinCapacity;
+
+		// Start Slider at max
+		fuelSlider.value = PlayerManager.instance.FuelMaxCapacity;
+
+		// Set Player current Value
+		PlayerManager.instance.FuelCurrentValue = PlayerManager.instance.FuelMaxCapacity;
+
+
+		// Update Max Label
+		fuelGaugeMaxValueText = GameObject.Find ("FuelValueMax").GetComponent<Text> ();
+		fuelGaugeMaxValueText.text = PlayerManager.instance.FuelMaxCapacity.ToString();
+
+
+
+	}
+
+	public void UpdateHUDCurrentLevel ()
+	{
+		// display current level number
+		levelValueText.text = SceneNavigationController.instance.LevelNumber.ToString();
+
+	}
 }
