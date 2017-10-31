@@ -11,7 +11,7 @@ public class FuelBoost : MonoBehaviour {
 	// Detect if the Player picked it up
 	void OnTriggerEnter (Collider target)
 	{
-		//Debug.Log("Fuel Boost triggered by " + target.gameObject.name);
+		Debug.Log("Fuel Boost triggered by " + target.gameObject.name);
 
 		// if it was the player
 		if (target.gameObject.tag == "Player") {
@@ -26,14 +26,11 @@ public class FuelBoost : MonoBehaviour {
 	// Player picked up fuel barrel
 	private void AddFuel (float amount)
 	{
+        // get reference to rocket
+        Rocket temp = FindObjectOfType<Rocket>();
 
-		// Add fuel, capping it at the max
-		PlayerManager.instance.FuelCurrentValue = Mathf.Clamp
-													(
-													PlayerManager.instance.FuelCurrentValue + amount, 
-													PlayerManager.instance.FuelMinCapacity,
-													PlayerManager.instance.FuelMaxCapacity
-													);
+        // Add fuel, capping it at the max
+        temp.FuelCurrentValue = Mathf.Clamp (temp.FuelCurrentValue + amount, temp.FuelMinCapacity, temp.FuelMaxCapacity);
 
 		// destroy the fuel once picked up
 		Destroy(gameObject);

@@ -14,6 +14,7 @@ public class CanvasManager : MonoBehaviour {
 
 	private Text fuelGaugeMaxValueText;
 
+    private Rocket rocketRef;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +22,12 @@ public class CanvasManager : MonoBehaviour {
 
 		levelValueText = GameObject.Find("LevelValue").GetComponent<Text>();
 
+        // Set all the Fuel Gauge Values
 		InitializeFuelGauge ();
 
+        // Set the current Level
 		UpdateHUDCurrentLevel ();
-
+  
 
 	}
 
@@ -42,11 +45,9 @@ public class CanvasManager : MonoBehaviour {
 	/// </summary>
 	public void UpdateFuelHUD() {
 
-		fuelSlider.value = PlayerManager.instance.FuelCurrentValue;
+        fuelSlider.value = FindObjectOfType<Rocket>().FuelCurrentValue;
 
 	}
-
-
 
 
 	/// <summary>
@@ -54,35 +55,36 @@ public class CanvasManager : MonoBehaviour {
 	/// </summary>
 	private void InitializeFuelGauge ()
 	{
-		// Get reference to slider object
-		fuelSlider = GameObject.Find ("FuelTankSlider").GetComponent<Slider> ();
 
+        rocketRef = FindObjectOfType<Rocket>();
+
+        // Get reference to slider object
+        fuelSlider = GameObject.Find ("FuelTankSlider").GetComponent<Slider> ();
 
 		// Set slider Max value
-		fuelSlider.maxValue = PlayerManager.instance.FuelMaxCapacity;
+		fuelSlider.maxValue = rocketRef.FuelMaxCapacity;
 
 		// Set Slider Min value
-		fuelSlider.minValue = PlayerManager.instance.FuelMinCapacity;
+		fuelSlider.minValue = rocketRef.FuelMinCapacity;
 
 		// Start Slider at max
-		fuelSlider.value = PlayerManager.instance.FuelMaxCapacity;
+		fuelSlider.value = rocketRef.FuelMaxCapacity;
 
-		// Set Player current Value
-		PlayerManager.instance.FuelCurrentValue = PlayerManager.instance.FuelMaxCapacity;
+        // Set Player current Value
+        rocketRef.FuelCurrentValue = rocketRef.FuelMaxCapacity;
 
 
 		// Update Max Label
 		fuelGaugeMaxValueText = GameObject.Find ("FuelValueMax").GetComponent<Text> ();
-		fuelGaugeMaxValueText.text = PlayerManager.instance.FuelMaxCapacity.ToString();
-
-
+		fuelGaugeMaxValueText.text = rocketRef.FuelMaxCapacity.ToString();
 
 	}
 
 	public void UpdateHUDCurrentLevel ()
 	{
-		// display current level number
-		levelValueText.text = SceneNavigationController.instance.LevelNumber.ToString();
+
+        // display current level number
+        levelValueText.text = SceneManager.GetActiveScene().name;
 
 	}
 }

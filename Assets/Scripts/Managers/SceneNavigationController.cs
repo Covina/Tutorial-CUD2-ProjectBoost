@@ -8,22 +8,14 @@ public class SceneNavigationController : MonoBehaviour {
 
 	public static SceneNavigationController instance;
 
+    // Total Scenes
+    private int totalSceneCount;		
 
-	private int totalSceneCount;		// Total Scenes
-	private int levelStartIndex = 1;	// The index of the first level
-	private int lastLevelIndex = 5;		// The index of the last level
-
-	// init on load
+	// Current Scene Index
 	private int currentSceneIndex = 0;
 
 	// how many times the player has tried to complete the level
 	private int attemptsTrackerValue = 1;
-
-	private int levelNumber = 1;
-	public int LevelNumber {
-		get { return levelNumber; }
-		set { levelNumber = value; }
-	}
 
 	// Use this for initialization
 	void Awake () {
@@ -60,8 +52,10 @@ public class SceneNavigationController : MonoBehaviour {
     /// </summary>
     public void LoadMainMenu() 
     {
-		SceneManager.LoadScene (0);
-		currentSceneIndex = 0;
+        Debug.Log("LoadMainMenu: currentSceneIndex : " + currentSceneIndex);
+
+        SceneManager.LoadScene (0);
+
     }
 
 	/// <summary>
@@ -69,14 +63,10 @@ public class SceneNavigationController : MonoBehaviour {
 	/// </summary>
     public void LoadFirstLevel()
     {
-    	// Set level Number for display
-    	levelNumber = 1;
 
-    	// set current scene navigation index
-		currentSceneIndex = levelStartIndex;
+        // Load the first level based on index position
+        SceneManager.LoadScene(1);
 
-		// Load the first level based on index position
-		SceneManager.LoadScene(levelStartIndex);
     }
 
     /// <summary>
@@ -85,20 +75,16 @@ public class SceneNavigationController : MonoBehaviour {
 	public void LoadNextLevel ()
 	{
 
-		levelNumber++;
+        // Set current scene index.
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-		currentSceneIndex++;
+        // increment by 1
+        int nextSceneIndex = currentSceneIndex + 1;
 
-		// check if we're at the end.
-		if (currentSceneIndex <= lastLevelIndex) {
+        Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
 
-			SceneManager.LoadScene (currentSceneIndex);
+		SceneManager.LoadScene(nextSceneIndex);
 
-		} else {
-
-			// Load the end of game scene
-			SceneManager.LoadScene ("EndCredits");
-		}
     }
 
     /// <summary>
@@ -106,7 +92,8 @@ public class SceneNavigationController : MonoBehaviour {
     /// </summary>
     public void ReloadLevel()
     {
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Debug.Log("ReloadLevel currentSceneIndex " + currentSceneIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 

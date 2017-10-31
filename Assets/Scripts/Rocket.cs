@@ -42,7 +42,22 @@ public class Rocket : MonoBehaviour {
     [SerializeField] float deathLoadDelay = 3.0f;
     [SerializeField] float levelLoadDelay = 2.0f;
 
+    private bool isCollisionsDisabled = false;
 
+
+    // Fuel tank Min and Max Capacities
+    public float FuelMaxCapacity = 8.0f;
+    public float FuelMinCapacity = 0.0f;
+
+    // Get/Set for current fuel value;
+    private float fuelCurrentValue;
+    public float FuelCurrentValue
+    {
+        get { return fuelCurrentValue; }
+        set { fuelCurrentValue = value; }
+    }
+
+    // Game States
     enum State
     {
         Alive,
@@ -76,14 +91,39 @@ public class Rocket : MonoBehaviour {
             RespondToRotateInput();
         }
 
+        // Check if in debug mode
+        if(Debug.isDebugBuild)
+        {
+            RespondToDebugKeys();
+
+        }
+        
+
     }
 
+    private void RespondToDebugKeys()
+    {
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+
+            // load next level
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+
+            // toggle collisions
+            isCollisionsDisabled = !isCollisionsDisabled;
+        }
+
+    }
 
     // 
     private void RespondToThrustInput()
     {
         // check for thrust
-        if (Input.GetKey(KeyCode.Space) && PlayerManager.instance.FuelCurrentValue > 0)
+        if (Input.GetKey(KeyCode.Space) && fuelCurrentValue > 0)
         {
             ApplyThrust();
 
@@ -125,7 +165,7 @@ public class Rocket : MonoBehaviour {
     private void SpendFuel (float amount)
 	{
 		// Decrement by the consumption amount
-		PlayerManager.instance.FuelCurrentValue -= amount;
+		fuelCurrentValue -= amount;
 
 	}
 
@@ -170,7 +210,7 @@ public class Rocket : MonoBehaviour {
     {
 
         // Prevent extra processing if we're dead
-        if (state != State.Alive) { return; }
+        if (state != State.Alive || isCollisionsDisabled == true) { return; }
 
         //Debug.Log("Player hit something");
 

@@ -138,10 +138,10 @@ GameObject:
   - component: {fileID: 4351239604589156}
   - component: {fileID: 54494306019486254}
   - component: {fileID: 82532815174845390}
-  - component: {fileID: 114492710401018784}
+  - component: {fileID: 114116191935635310}
   m_Layer: 0
   m_Name: Rocket Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,7 +475,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114492710401018784
+--- !u!114 &114116191935635310
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -566,7 +566,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1457643310
+  randomSeed: 116998336
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3828,7 +3828,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1219808854
+  randomSeed: 650141898
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7090,7 +7090,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1925422137
+  randomSeed: -2015208241
   InitialModule:
     serializedVersion: 3
     enabled: 1
