@@ -494,6 +494,8 @@ MonoBehaviour:
   deathParticles: {fileID: 198731919409346822}
   deathLoadDelay: 3
   levelLoadDelay: 2
+  FuelMaxCapacity: 5
+  FuelMinCapacity: 0
 --- !u!136 &136070930239855722
 CapsuleCollider:
   m_ObjectHideFlags: 1

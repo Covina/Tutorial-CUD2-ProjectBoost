@@ -5,7 +5,7 @@ using UnityEngine;
 public class FallingObjectSpawner : MonoBehaviour {
 
     // Rock to spawn
-    [SerializeField] private GameObject rockObject;
+    [SerializeField] private GameObject fallingObject;
 
     // Time delay
     public float spawnEverySeconds;
@@ -15,44 +15,46 @@ public class FallingObjectSpawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        StartCoroutine( SpawnRockCoroutine() );
+        StartCoroutine( Spawner() );
 
 	}
 	
 
 
-    private IEnumerator SpawnRockCoroutine()
+    private IEnumerator Spawner()
     {
-        Debug.Log("SpawnRockCoroutine started");
+        //Debug.Log("SpawnRockCoroutine started");
 
         while(continueSpawningRocks) { 
 
             yield return new WaitForSeconds(spawnEverySeconds);
 
             //
-            SpawnRock();
+            SpawnFallingObject();
 
         }
    
 
     }
 
-
-    private void SpawnRock()
+    /// <summary>
+    /// Spawn the Falling Object
+    /// </summary>
+    private void SpawnFallingObject()
     {
         //Debug.Log("SpawnRock called");
 
         // small randomization to rock spawn on the X
-        Transform rockSpawnTransform = transform;
+        Transform objectSpawnTransform = transform;
 
         // small randomization in X axis
-        Vector3 temp = rockSpawnTransform.position;
-        temp.x += Random.Range(-2.0f, 2.0f);
-        rockSpawnTransform.position = temp;
+        Vector3 temp = objectSpawnTransform.position;
+        temp.x += Random.Range(-3.0f, 3.0f);
+        objectSpawnTransform.position = temp;
 
 
         // parent the object under Container
-        GameObject rock = Instantiate(rockObject, rockSpawnTransform) as GameObject;
+        GameObject rock = Instantiate(fallingObject, objectSpawnTransform) as GameObject;
 
         // house it in the holder
         rock.transform.parent = GameObject.Find("RocksContainer").transform;

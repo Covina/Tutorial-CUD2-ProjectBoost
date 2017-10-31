@@ -11,7 +11,7 @@ public class FuelBoost : MonoBehaviour {
 	// Detect if the Player picked it up
 	void OnTriggerEnter (Collider target)
 	{
-		Debug.Log("Fuel Boost triggered by " + target.gameObject.name);
+		//Debug.Log("Fuel Boost triggered by " + target.gameObject.name);
 
 		// if it was the player
 		if (target.gameObject.tag == "Player") {

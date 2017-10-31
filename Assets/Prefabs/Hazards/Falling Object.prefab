@@ -109,5 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42af55ec1fa183c439a8d7286fdd41a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockObject: {fileID: 1034390180543082, guid: 14767a9d58a30c442b438cd13b92a8a2, type: 2}
-  spawnEverySeconds: 3
+  fallingObject: {fileID: 1278453686858974, guid: abe3dcf97935cad41bbd2dad58447f91,
+    type: 2}
+  spawnEverySeconds: 4

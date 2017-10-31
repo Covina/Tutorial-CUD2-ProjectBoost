@@ -20,7 +20,7 @@ public class FallingObject : MonoBehaviour {
     void Awake()
     {
 
-        ttl = Random.Range(5.0f, 10.0f);
+        ttl = Random.Range(3.0f, 6.0f);
 
     }
 
@@ -64,7 +64,16 @@ public class FallingObject : MonoBehaviour {
         yield return new WaitForSeconds(ttl);
 
 
-        gameObject.GetComponent<MeshCollider>().enabled = false;
+        if (gameObject.GetComponent<MeshCollider>() != null)
+        {
+            gameObject.GetComponent<MeshCollider>().enabled = false;
+        }
+
+        if (gameObject.GetComponent<SphereCollider>() != null)
+        {
+            gameObject.GetComponent<SphereCollider>().enabled = false;
+        }
+
 
         animateRockRemoval = true;
 

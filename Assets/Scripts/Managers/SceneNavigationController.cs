@@ -52,7 +52,7 @@ public class SceneNavigationController : MonoBehaviour {
     /// </summary>
     public void LoadMainMenu() 
     {
-        Debug.Log("LoadMainMenu: currentSceneIndex : " + currentSceneIndex);
+        //Debug.Log("LoadMainMenu: currentSceneIndex : " + currentSceneIndex);
 
         SceneManager.LoadScene (0);
 
@@ -81,7 +81,7 @@ public class SceneNavigationController : MonoBehaviour {
         // increment by 1
         int nextSceneIndex = currentSceneIndex + 1;
 
-        Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
+        //Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
 
 		SceneManager.LoadScene(nextSceneIndex);
 

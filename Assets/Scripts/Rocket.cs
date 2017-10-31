@@ -218,11 +218,11 @@ public class Rocket : MonoBehaviour {
         switch(collision.gameObject.tag)
         {
             case "Friendly":
-                print("Rocket hit a friendly: " + collision.gameObject.name);
+                //print("Rocket hit a friendly: " + collision.gameObject.name);
                 break;
 
             case "Hazard":
-                print("Rocket hit Hazard: " + collision.gameObject.name);
+               // print("Rocket hit Hazard: " + collision.gameObject.name);
                 StartCoroutine( PlayerDeath() );
                 break;
 
