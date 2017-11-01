@@ -11,7 +11,7 @@ public class Rocket : MonoBehaviour {
     private float thrustBoost = 2.75f;
 
     // how much fuel should we burn
-    private float fuelConsumptionIncrement = 1.0f;
+    private float fuelConsumptionIncrement = 0.75f;
 
     // how fast it should rotate
     //[SerializeField]
@@ -56,6 +56,39 @@ public class Rocket : MonoBehaviour {
         set { fuelCurrentValue = value; }
     }
 
+
+	private bool isThrusting = false;
+    public bool IsThrusting { 
+		get { 
+			return isThrusting;  
+		} 
+		set {
+			isThrusting = value;
+		}
+    }
+
+    private bool isRotatingLeft = false;
+	public bool IsRotatingLeft { 
+		get { 
+			return isRotatingLeft;  
+		} 
+		set {
+			isRotatingLeft = value;
+		}
+    }
+
+
+    private bool isRotatingRight = false;
+	public bool IsRotatingRight { 
+		get { 
+			return isRotatingRight;  
+		} 
+		set {
+			isRotatingRight = value;
+		}
+    }
+
+
     // Game States
     enum State
     {
@@ -86,7 +119,7 @@ public class Rocket : MonoBehaviour {
 		// if the player is alive
 		if (state == State.Alive) {
 
-			RespondToThrustInput ();
+			RespondToThrustInput();
             RespondToRotateInput();
         }
 
@@ -124,12 +157,15 @@ public class Rocket : MonoBehaviour {
     /// <summary>
     /// Apply thrust when player is pressing the SPACE bar
     /// </summary>
-    public void RespondToThrustInput()
-    {
-        // check for thrust
-        if (Input.GetKey(KeyCode.Space) && fuelCurrentValue > 0)
-        {
-            ApplyThrust();
+    public void RespondToThrustInput ()
+	{
+		// check for thrust
+		if (Input.GetKey (KeyCode.Space) || isThrusting == true) {
+
+			if (fuelCurrentValue > 0) {
+
+				ApplyThrust ();
+			}
 
         }
         else
@@ -143,9 +179,12 @@ public class Rocket : MonoBehaviour {
     /// </summary>
     private void StopApplyingThrust()
     {
+
+
         // player is not thrusting, end sound
         audioSource.Stop();
         mainEngineParticles.Stop();
+		isThrusting = false;
     }
 
     /// <summary>
@@ -195,13 +234,13 @@ public class Rocket : MonoBehaviour {
         float rotationSpeed = Time.deltaTime * rotationBoost;
 
         // check for left tilt
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || isRotatingLeft == true)
         {
             // Rotate to the left
             transform.Rotate(Vector3.forward * rotationSpeed);
 
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+		else if (Input.GetKey(KeyCode.RightArrow) || isRotatingRight == true)
         {
             // Rotate to the right
             transform.Rotate(-Vector3.forward * rotationSpeed);

@@ -1,34 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
-public class TouchInputManager : MonoBehaviour {
+using UnityEngine.EventSystems;
 
 
-    // Input buttons
-    public Button thrustButton;
-    public Button rotateLeftButton;
-    public Button rotateRightButton;
+public class TouchInputManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandler  {
+
+	private Rocket rocket;
 
 
-    // Use this for initialization
-    void Start () {
-		
+	void Start()
+	{
+		// Get reference to the player rocket
+		rocket = GameObject.FindObjectOfType<Rocket>();
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+    // built in to detect on press
+    public void OnPointerDown(PointerEventData eventData)
+    {
+
+        if (gameObject.name == "ThrustButton")
+        {
+            // Apply thrust
+            rocket.IsThrusting = true;
+        }
+
+        if (gameObject.name == "ButtonRotateLeft")
+        {
+            // Rotate Left
+			rocket.IsRotatingLeft = true;
         
-        // Check for Thrust
+        }
+        else if (gameObject.name == "ButtonRotateRight")
+        {
+            // Rotate Right
+			rocket.IsRotatingRight = true;
 
-        // Check for Rotation
+        }
 
-
-	}
-
+    }
 
 
 
+    // built in to detect on release
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (gameObject.name == "ThrustButton")
+        {
+            // Apply thrust
+			rocket.IsThrusting = false;
+        }
+
+
+        if (gameObject.name == "ButtonRotateLeft")
+        {
+            // Rotate Left
+			rocket.IsRotatingLeft = false;
+
+        }
+        else if (gameObject.name == "ButtonRotateRight")
+        {
+            // Rotate Right
+			rocket.IsRotatingRight = false;
+
+        }
+    }
 }
