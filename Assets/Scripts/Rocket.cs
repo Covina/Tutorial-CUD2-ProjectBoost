@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour {
 
   
-
     // multiplier on thrust
     //[SerializeField]
     private float thrustBoost = 2.75f;
@@ -101,6 +100,9 @@ public class Rocket : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Respond to the debug key shortcuts
+    /// </summary>
     private void RespondToDebugKeys()
     {
 
@@ -119,8 +121,10 @@ public class Rocket : MonoBehaviour {
 
     }
 
-    // 
-    private void RespondToThrustInput()
+    /// <summary>
+    /// Apply thrust when player is pressing the SPACE bar
+    /// </summary>
+    public void RespondToThrustInput()
     {
         // check for thrust
         if (Input.GetKey(KeyCode.Space) && fuelCurrentValue > 0)
@@ -130,13 +134,23 @@ public class Rocket : MonoBehaviour {
         }
         else
         {
-            // player is not thrusting, end sound
-            audioSource.Stop();
-            mainEngineParticles.Stop();
+            StopApplyingThrust();
         }
     }
 
-    //
+    /// <summary>
+    /// Stop applying thrust and everything related to it
+    /// </summary>
+    private void StopApplyingThrust()
+    {
+        // player is not thrusting, end sound
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+    }
+
+    /// <summary>
+    /// Apply Thrust to the rocket
+    /// </summary>
     private void ApplyThrust()
     {
         // Add force only in the direction of where its pointing (rotation)
@@ -172,33 +186,28 @@ public class Rocket : MonoBehaviour {
     /// <summary>
     /// Controlling the rotation of the ship
     /// </summary>
-    private void RespondToRotateInput()
+    public void RespondToRotateInput()
     {
 
-        // disable physics on rotation
-        rigidBody.freezeRotation = true;
+        // Remove physics due to rotation
+        rigidBody.angularVelocity = Vector3.zero;
 
         float rotationSpeed = Time.deltaTime * rotationBoost;
 
         // check for left tilt
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-
+            // Rotate to the left
             transform.Rotate(Vector3.forward * rotationSpeed);
-
 
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-
-
+            // Rotate to the right
             transform.Rotate(-Vector3.forward * rotationSpeed);
-
 
         }
 
-        // resume physics control
-        rigidBody.freezeRotation = false;
     }
 
 
