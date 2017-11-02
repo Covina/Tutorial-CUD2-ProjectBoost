@@ -8,10 +8,8 @@ public class SceneNavigationController : MonoBehaviour {
 
 	public static SceneNavigationController instance;
 
-    // Total Scenes
-    private int totalSceneCount;		
 
-	// Current Scene Index
+    // Current Scene Index
 	private int currentSceneIndex = 0;
 
 	// how many times the player has tried to complete the level
@@ -28,9 +26,10 @@ public class SceneNavigationController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		totalSceneCount = SceneManager.sceneCountInBuildSettings;
+		
 
 	}
+
 	/// <summary>
 	/// Makes the singleton.
 	/// </summary>
