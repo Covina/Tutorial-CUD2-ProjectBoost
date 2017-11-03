@@ -71,9 +71,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4432892400262658}
+  - component: {fileID: 95444922632373722}
+  - component: {fileID: 114637911384938154}
   m_Layer: 0
   m_Name: Landing Pad
-  m_TagString: Untagged
+  m_TagString: LandingPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,6 +237,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95444922632373722
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1923808233375602}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a875e7f12b497e458395a6f9230974b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108163893079419730
 Light:
   m_ObjectHideFlags: 1
@@ -271,3 +290,15 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114637911384938154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1923808233375602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfc79468dbc65448b234c96089fa042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finishPad: {fileID: 1120339743829958}
