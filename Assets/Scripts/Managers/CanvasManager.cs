@@ -130,7 +130,7 @@ public class CanvasManager : MonoBehaviour {
             
             // disable
             objectiveTextContainer.SetActive(false);
-            Debug.Log("UpdateObjectivesHUD() :: levelHasObjectives is False; Disable objectives text");
+            //Debug.Log("UpdateObjectivesHUD() :: levelHasObjectives is False; Disable objectives text");
 
             return;
         }
@@ -140,7 +140,7 @@ public class CanvasManager : MonoBehaviour {
 
             // disable
             objectiveTextContainer.SetActive(true);
-            Debug.Log("UpdateObjectivesHUD() :: levelHasObjectives is True; enable objectives text");
+            //Debug.Log("UpdateObjectivesHUD() :: levelHasObjectives is True; enable objectives text");
 
         }
 
