@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class ObjectiveItem : MonoBehaviour {
 
+    // Sound effect on pickup
+    public AudioClip singleObjectiveCollectedSFX;
 
+    // get reference to Level Objectives Manager
     private LevelObjectives levelObj;
 
-	// Use this for initialization
-	void Start () {
+
+    // Reference to GameManager to play the sound for pickup
+    private AudioSource audioSource;
+
+
+    // Use this for initialization
+    void Start () {
 
         levelObj = GameObject.FindObjectOfType<LevelObjectives>();
+
+        audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
 
 	}
 	
@@ -26,7 +36,12 @@ public class ObjectiveItem : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             // Increment the count of items found
-            levelObj.ObjectivesCollected += 1;
+            //levelObj.ObjectivesCollected += 1;
+
+            levelObj.CollectObjective();
+
+            // play sound
+            audioSource.PlayOneShot(singleObjectiveCollectedSFX);
 
             // destroy the item
             Destroy(gameObject);

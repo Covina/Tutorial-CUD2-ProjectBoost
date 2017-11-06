@@ -33,9 +33,10 @@ public class Rocket : MonoBehaviour {
     [SerializeField] AudioClip levelSuccess;
 
     // Particle effects for Rocket Ship
-    [SerializeField] ParticleSystem mainEngineParticles;
-    [SerializeField] ParticleSystem successParticles;
-    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] private ParticleSystem mainEngineParticles;
+    [SerializeField] private ParticleSystem successParticles;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private ParticleSystem pickupExplosion;
 
     // Load delays
     [SerializeField] float deathLoadDelay = 3.0f;
@@ -43,6 +44,8 @@ public class Rocket : MonoBehaviour {
 
     private bool isCollisionsDisabled = false;
 
+    // if player runs out of thrust, explode them after 5 seconds
+    private float emptyThrustExplosionDelay = 5.0f;
 
     // Fuel tank Min and Max Capacities
     public float FuelMaxCapacity = 8.0f;
@@ -90,7 +93,7 @@ public class Rocket : MonoBehaviour {
 
 
     // Game States
-    enum State
+    public enum State
     {
         Alive,
         Dying,
@@ -98,7 +101,7 @@ public class Rocket : MonoBehaviour {
 
     }
 
-    State state = State.Alive;
+    public State state = State.Alive;
 
 	// Use this for initialization
 	void Start () {
@@ -162,14 +165,20 @@ public class Rocket : MonoBehaviour {
 		// check for thrust
 		if (Input.GetKey (KeyCode.Space) || isThrusting == true) {
 
+            // check fuel
 			if (fuelCurrentValue > 0) {
 
 				ApplyThrust ();
-			}
+			} else
+            {
+                // player is out of fuel
+                StopApplyingThrust();
+            }
 
         }
         else
         {
+            // player is not pressing the thrust button
             StopApplyingThrust();
         }
     }
@@ -180,8 +189,7 @@ public class Rocket : MonoBehaviour {
     private void StopApplyingThrust()
     {
 
-
-        // player is not thrusting, end sound
+        // player is not thrusting, end sound and effects
         audioSource.Stop();
         mainEngineParticles.Stop();
 		isThrusting = false;
@@ -219,6 +227,13 @@ public class Rocket : MonoBehaviour {
 	{
 		// Decrement by the consumption amount
 		fuelCurrentValue -= amount;
+
+        if(fuelCurrentValue <= 0)
+        {
+            // start countdown timer to destruction.
+            StartCoroutine(OutOfThrustCountdown());
+
+        }
 
 	}
 
@@ -337,6 +352,23 @@ public class Rocket : MonoBehaviour {
 
     }
 
+
+
+    private IEnumerator OutOfThrustCountdown()
+    {
+
+        yield return new WaitForSeconds(emptyThrustExplosionDelay);
+
+        StartCoroutine(PlayerDeath());
+
+
+    }
+
+
+    public void PlayBoostPickupExplosionPFX()
+    {
+        pickupExplosion.Play();
+    }
 
 }
 

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class LandingPadController : MonoBehaviour {
 
+    [SerializeField] private GameObject finishPad;
 
     private Animator animator;
 
-    [SerializeField] private GameObject finishPad;
+    public bool isObjectiveLevel = false;
 
     // Use this for initialization
     void Start()

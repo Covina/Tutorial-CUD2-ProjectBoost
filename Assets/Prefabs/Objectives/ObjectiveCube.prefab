@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 198456119006024500}
   - component: {fileID: 199007720119093848}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Objective PFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788822657419410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.56, y: 28.48, z: 0}
+  m_LocalPosition: {x: -22.6, y: 28.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132731793621186}
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2663b6682486914d816817962a52110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  singleObjectiveCollectedSFX: {fileID: 8300000, guid: a9b0f9e9e144dea41ae58902b098762e,
+    type: 3}
 --- !u!198 &198456119006024500
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1097,7 +1099,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.94482756, g: 1, b: 0, a: 1}
+        key0: {r: 0, g: 1, b: 0.17241383, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}

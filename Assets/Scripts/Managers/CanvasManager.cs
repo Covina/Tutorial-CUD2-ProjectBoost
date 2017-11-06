@@ -8,46 +8,59 @@ public class CanvasManager : MonoBehaviour {
 
 	//public static CanvasManager instance;
 
+    // The level the player is currently on
 	private Text levelValueText;
 
+    // Reference to the fuel Slider object
 	private Slider fuelSlider;
 
+    // Reference to the maximum value on the fuel gauge
 	private Text fuelGaugeMaxValueText;
 
+    // Reference to the rocket itself;
     private Rocket rocketRef;
 
-	// Use this for initialization
-	void Start () {
+    // References to the Objectives tracking
+    [SerializeField] private GameObject objectiveTextContainer;
+    [SerializeField] private Text objectivesCollectedTextValue;
 
+    // Reference for the LevelObjectives script.
+    private LevelObjectives levelObjectives;
 
-		levelValueText = GameObject.Find("LevelValue").GetComponent<Text>();
+    // Use this for initialization
+    void Start ()
+    {
+        
+        levelValueText = GameObject.Find("LevelValue").GetComponent<Text>();
+
+        // get reference
+        objectiveTextContainer = GameObject.FindGameObjectWithTag("ObjectivesText");
+
+        // get reference to level objectives
+        levelObjectives = GetComponent<LevelObjectives>();
 
         // Set all the Fuel Gauge Values
-		InitializeFuelGauge ();
+        InitializeFuelGauge();
 
         // Set the current Level
-		UpdateHUDCurrentLevel ();
-  
+        UpdateHUDCurrentLevel();
 
-	}
+        // Update the HUD
+        UpdateObjectivesHUD();
 
-		
-	// Update is called once per frame
-	void Update () {
+        //Debug.Log("===== STARTING " + levelValueText + " ===== ");
+
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 
 		// Update the Fuel Gauge
 		UpdateFuelHUD();
 
-	}
+    }
 
-	/// <summary>
-	/// Updates the fuel HUD
-	/// </summary>
-	public void UpdateFuelHUD() {
-
-        fuelSlider.value = FindObjectOfType<Rocket>().FuelCurrentValue;
-
-	}
 
 
 	/// <summary>
@@ -75,11 +88,16 @@ public class CanvasManager : MonoBehaviour {
 
 
 		// Update Max Label
-		fuelGaugeMaxValueText = GameObject.Find ("FuelValueMax").GetComponent<Text> ();
-		fuelGaugeMaxValueText.text = rocketRef.FuelMaxCapacity.ToString();
+		//fuelGaugeMaxValueText = GameObject.Find ("FuelValueMax").GetComponent<Text> ();
+		//fuelGaugeMaxValueText.text = rocketRef.FuelMaxCapacity.ToString();
 
 	}
 
+
+
+    /// <summary>
+    /// Display the current level
+    /// </summary>
 	public void UpdateHUDCurrentLevel ()
 	{
 
@@ -87,4 +105,52 @@ public class CanvasManager : MonoBehaviour {
         levelValueText.text = SceneManager.GetActiveScene().name;
 
 	}
+
+    /// <summary>
+    /// Updates the fuel HUD
+    /// </summary>
+    public void UpdateFuelHUD()
+    {
+
+        fuelSlider.value = FindObjectOfType<Rocket>().FuelCurrentValue;
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void UpdateObjectivesHUD()
+    {
+
+        //Debug.Log("UpdateObjectivesHUD() Called: levelObjectives.ObjectivesCollected: " + levelObjectives.ObjectivesCollected);
+        //Debug.Log("UpdateObjectivesHUD() Continued: LevelHasObjectives = " + levelObjectives.LevelHasObjectives);
+
+
+        if (levelObjectives.LevelHasObjectives == false) {
+            
+            // disable
+            objectiveTextContainer.SetActive(false);
+            //Debug.Log("UpdateObjectivesHUD() :: levelHasObjectives is False; Disable objectives text");
+
+            return;
+        }
+
+        if (levelObjectives.LevelHasObjectives == true)
+        {
+
+            // disable
+            objectiveTextContainer.SetActive(true);
+            //Debug.Log("UpdateObjectivesHUD() :: levelHasObjectives is False; Disable objectives text");
+
+            return;
+        }
+
+
+        // Update to "0 of 2", or "1 of 2", etc
+        objectivesCollectedTextValue.text = levelObjectives.ObjectivesCollected.ToString() + " of " + levelObjectives.ObjectiveCount.ToString();
+
+    }
+
+
+
 }
