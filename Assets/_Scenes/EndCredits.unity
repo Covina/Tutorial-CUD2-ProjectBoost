@@ -205,26 +205,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114180290904905278, guid: 4fbe97a31ac5c6a4983213bcc98d6306,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 114359589228618170, guid: 84574739db2ee364498ed9ea8a7378d2,
-        type: 2}
-    - target: {fileID: 1154208561344664, guid: 4fbe97a31ac5c6a4983213bcc98d6306, type: 2}
-      propertyPath: m_Name
-      value: End Credits Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 223100939060830862, guid: 4fbe97a31ac5c6a4983213bcc98d6306,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1929052976}
-    - target: {fileID: 114180290904905278, guid: 4fbe97a31ac5c6a4983213bcc98d6306,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMainMenu
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fbe97a31ac5c6a4983213bcc98d6306, type: 2}
   m_IsPrefabParent: 0
@@ -291,7 +276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &767127913
 Prefab:
@@ -526,5 +511,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -37,7 +37,12 @@ public class CanvasManager : MonoBehaviour {
         objectiveTextContainer = GameObject.FindGameObjectWithTag("ObjectivesText");
 
         // get reference to level objectives
-        levelObjectives = GetComponent<LevelObjectives>();
+        levelObjectives = GameObject.FindObjectOfType<LevelObjectives>();
+
+        if(levelObjectives == null)
+        {
+            Debug.Log("START() in CanvasManager : unable to find LevelObjectives object");
+        }
 
         // Set all the Fuel Gauge Values
         InitializeFuelGauge();
@@ -124,7 +129,7 @@ public class CanvasManager : MonoBehaviour {
 
         //Debug.Log("UpdateObjectivesHUD() Called: levelObjectives.ObjectivesCollected: " + levelObjectives.ObjectivesCollected);
         //Debug.Log("UpdateObjectivesHUD() Continued: LevelHasObjectives = " + levelObjectives.LevelHasObjectives);
-
+        levelObjectives = GameObject.FindObjectOfType<LevelObjectives>();
 
         if (levelObjectives.LevelHasObjectives == false) {
             

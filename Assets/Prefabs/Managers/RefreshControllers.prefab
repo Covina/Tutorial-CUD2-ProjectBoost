@@ -175,7 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94b828b1d380f4e9ffaf037895efeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectiveTextContainer: {fileID: 1213037031428932, guid: 7a547527ea7eb854995ec419354e2028,
-    type: 2}
-  objectivesCollectedTextValue: {fileID: 114486885636483634, guid: 7a547527ea7eb854995ec419354e2028,
-    type: 2}
+  objectiveTextContainer: {fileID: 0}
+  objectivesCollectedTextValue: {fileID: 0}

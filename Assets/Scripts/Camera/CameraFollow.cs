@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour {
     private float minXClampPos = 0.0f;
     private float maxXClampPos = 0.0f;
 
-    private float minYClampPos = 0.0f;
+    private float minYClampPos = 30.0f;
     private float maxYClampPos = 0.0f;
 
 
@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour {
     private float cameraRocketClampOffsetX = 30.0f;
     private float cameraRocketClampOffsetY = 10.0f;
 
-    private float cameraYAxisOffset = 10.0f;
+    private float cameraYAxisOffset = 15.0f;
 
     // Use this for initialization
     void Start () {
@@ -70,7 +70,7 @@ public class CameraFollow : MonoBehaviour {
             minXClampPos = (hazard.transform.position.x < minXClampPos) ? hazard.transform.position.x : minXClampPos;
             maxXClampPos = (hazard.transform.position.x > maxXClampPos) ? hazard.transform.position.x : maxXClampPos;
 
-            minYClampPos = (hazard.transform.position.y < minYClampPos) ? hazard.transform.position.y : minYClampPos;
+            //minYClampPos = (hazard.transform.position.y < minYClampPos) ? hazard.transform.position.y : minYClampPos;
             maxYClampPos = (hazard.transform.position.y > maxYClampPos) ? hazard.transform.position.y : maxYClampPos;
 
         }
@@ -78,7 +78,7 @@ public class CameraFollow : MonoBehaviour {
         // adjust
         
         minXClampPos += cameraRocketClampOffsetX;
-        minYClampPos += cameraRocketClampOffsetY;
+        //minYClampPos += cameraRocketClampOffsetY;
 
         maxXClampPos -= cameraRocketClampOffsetX;
         maxYClampPos -= cameraRocketClampOffsetY;
