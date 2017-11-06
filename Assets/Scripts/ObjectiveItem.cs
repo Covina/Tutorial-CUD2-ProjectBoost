@@ -38,6 +38,7 @@ public class ObjectiveItem : MonoBehaviour {
             // Increment the count of items found
             //levelObj.ObjectivesCollected += 1;
 
+            //Debug.Log("Calling  levelObj.CollectObjective()");
             levelObj.CollectObjective();
 
             // play sound

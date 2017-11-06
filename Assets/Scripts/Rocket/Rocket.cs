@@ -45,7 +45,7 @@ public class Rocket : MonoBehaviour {
     private bool isCollisionsDisabled = false;
 
     // if player runs out of thrust, explode them after 5 seconds
-    private float emptyThrustExplosionDelay = 5.0f;
+    private float emptyThrustExplosionDelay = 8.0f;
 
     // Fuel tank Min and Max Capacities
     public float FuelMaxCapacity = 8.0f;
