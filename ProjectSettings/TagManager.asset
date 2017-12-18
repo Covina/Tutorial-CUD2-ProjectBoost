@@ -11,6 +11,9 @@ TagManager:
   - RightEdgeMarker
   - ObjectivesText
   - ObjectiveItem
+  - UI_Thrust
+  - UI_TurnLeft
+  - UI_TurnRight
   layers:
   - Default
   - TransparentFX

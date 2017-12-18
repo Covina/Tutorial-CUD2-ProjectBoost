@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2663b6682486914d816817962a52110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singleObjectiveCollectedSFX: {fileID: 8300000, guid: a9b0f9e9e144dea41ae58902b098762e,
+  singleObjectiveCollectedSFX: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba,
     type: 3}
 --- !u!198 &198456119006024500
 ParticleSystem:

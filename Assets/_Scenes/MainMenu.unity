@@ -205,11 +205,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114813682362808386, guid: cb653f674d23aa14683e28648ecb9e90,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1519499051}
     - target: {fileID: 223279706913072802, guid: cb653f674d23aa14683e28648ecb9e90,
         type: 2}
       propertyPath: m_Camera
@@ -345,12 +340,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1519499051 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114430161168856502, guid: 84574739db2ee364498ed9ea8a7378d2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1561649540}
-  m_Script: {fileID: 11500000, guid: d66cc49f56499ca4f97eb67fe4aceffa, type: 3}
 --- !u!1001 &1561649540
 Prefab:
   m_ObjectHideFlags: 0

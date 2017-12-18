@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuelAmount: 5
-  boostAcquiredSFX: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  boostAcquiredSFX: {fileID: 8300000, guid: a9b0f9e9e144dea41ae58902b098762e, type: 3}
 --- !u!114 &114564402312538602
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour {
   
     // multiplier on thrust
     //[SerializeField]
-    private float thrustBoost = 2.75f;
+    private float thrustBoost = 225.0f;
 
     // how much fuel should we burn
     private float fuelConsumptionIncrement = 0.75f;
@@ -124,7 +124,7 @@ public class Rocket : MonoBehaviour {
 
 			RespondToThrustInput();
             RespondToRotateInput();
-        }
+        } 
 
         // Check if in debug mode
         if(Debug.isDebugBuild)
@@ -169,6 +169,7 @@ public class Rocket : MonoBehaviour {
 			if (fuelCurrentValue > 0) {
 
 				ApplyThrust ();
+
 			} else
             {
                 // player is out of fuel
@@ -184,25 +185,13 @@ public class Rocket : MonoBehaviour {
     }
 
     /// <summary>
-    /// Stop applying thrust and everything related to it
-    /// </summary>
-    private void StopApplyingThrust()
-    {
-
-        // player is not thrusting, end sound and effects
-        audioSource.Stop();
-        mainEngineParticles.Stop();
-		isThrusting = false;
-    }
-
-    /// <summary>
     /// Apply Thrust to the rocket
     /// </summary>
     private void ApplyThrust()
     {
         // Add force only in the direction of where its pointing (rotation)
         // Vector3.up = (0,1,0)  in the Y Axis
-        rigidBody.AddRelativeForce(Vector3.up * thrustBoost);
+        rigidBody.AddRelativeForce(Vector3.up * thrustBoost * Time.deltaTime);
 
         // check if its already playing, and if not, play it
         if (audioSource.isPlaying == false)
@@ -221,6 +210,19 @@ public class Rocket : MonoBehaviour {
 
 
     }
+
+    /// <summary>
+    /// Stop applying thrust and everything related to it
+    /// </summary>
+    private void StopApplyingThrust()
+    {
+        // player is not thrusting, end sound and effects
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+        isThrusting = false;
+    }
+
+
 
     // Reduce the fuel
     private void SpendFuel (float amount)
@@ -334,6 +336,7 @@ public class Rocket : MonoBehaviour {
     /// <returns>The death.</returns>
     private IEnumerator PlayerDeath()
     {
+        // Change State to Dying
         state = State.Dying;
 
 		// stop all thrust actvity
@@ -343,10 +346,13 @@ public class Rocket : MonoBehaviour {
         // Play explosion sound
         audioSource.PlayOneShot(explosion);
 
+        // Play explosion Particles
         deathParticles.Play();
 
+        // Delay before reloading the Level
 		yield return new WaitForSeconds(deathLoadDelay);
 
+        // Reload the level
 		SceneNavigationController.instance.ReloadLevel();
 
 

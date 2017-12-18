@@ -20,19 +20,24 @@ public class TouchInputManager : MonoBehaviour, IPointerUpHandler, IPointerDownH
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        if (gameObject.name == "ThrustButton")
+        // Don't proceed if player is dead
+        if(rocket.state != Rocket.State.Alive) { return;  }
+
+
+        // Check tag
+        if (gameObject.tag == "UI_Thrust")
         {
             // Apply thrust
             rocket.IsThrusting = true;
         }
 
-        if (gameObject.name == "ButtonRotateLeft")
+        if (gameObject.tag == "UI_TurnLeft")
         {
             // Rotate Left
 			rocket.IsRotatingLeft = true;
         
         }
-        else if (gameObject.name == "ButtonRotateRight")
+        else if (gameObject.tag == "UI_TurnRight")
         {
             // Rotate Right
 			rocket.IsRotatingRight = true;
