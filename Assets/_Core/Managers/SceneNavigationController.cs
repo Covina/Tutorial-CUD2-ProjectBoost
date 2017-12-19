@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigationController : MonoBehaviour {
 
-
 	public static SceneNavigationController instance;
-
 
     // Current Scene Index
 	private int currentSceneIndex = 0;
@@ -15,8 +13,13 @@ public class SceneNavigationController : MonoBehaviour {
 	// how many times the player has tried to complete the level
 	private int attemptsTrackerValue = 1;
 
-	// Use this for initialization
-	void Awake () {
+    private Dictionary<string, List<string>> gameLevels = new Dictionary<string, List<string>>();
+
+    private string[] levelFolderNames = new string[1];
+
+
+    // Use this for initialization
+    void Awake () {
 
 		MakeSingleton ();
 		
@@ -26,9 +29,29 @@ public class SceneNavigationController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		
+        // All Level Folder Names
+        levelFolderNames[0] = "LevelPack01_TrainingGround";
 
-	}
+        // TODO put this into a foreach.
+
+        // get the scene levels into an array
+        var loadedObjects = Resources.LoadAll("_Levels/" + levelFolderNames[0]);
+
+        List<string> loadedNames = new List<string>();
+
+        foreach(var o in loadedObjects)
+        {
+            loadedNames.Add(o.name);
+            //Debug.Log("Loading level name " + o.name);
+        }
+
+        Debug.Log("loadedNames.count: " + loadedNames.Count);
+
+        // add into dictionary
+        gameLevels.Add("levelpack01", loadedNames);
+
+
+    }
 
 	/// <summary>
 	/// Makes the singleton.
@@ -53,7 +76,7 @@ public class SceneNavigationController : MonoBehaviour {
     {
         //Debug.Log("LoadMainMenu: currentSceneIndex : " + currentSceneIndex);
 
-        SceneManager.LoadScene (0);
+        SceneManager.LoadScene ("MainMenu");
 
     }
 
