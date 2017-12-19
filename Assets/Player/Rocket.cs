@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour {
   
     // multiplier on thrust
     //[SerializeField]
-    private float thrustBoost = 225.0f;
+    private float thrustBoost = 200.0f;
 
     // how much fuel should we burn
     private float fuelConsumptionIncrement = 0.75f;
@@ -36,7 +36,6 @@ public class Rocket : MonoBehaviour {
     [SerializeField] private ParticleSystem mainEngineParticles;
     [SerializeField] private ParticleSystem successParticles;
     [SerializeField] private ParticleSystem deathParticles;
-    [SerializeField] private ParticleSystem pickupExplosion;
 
     // Load delays
     [SerializeField] float deathLoadDelay = 3.0f;
@@ -370,11 +369,6 @@ public class Rocket : MonoBehaviour {
 
     }
 
-
-    public void PlayBoostPickupExplosionPFX()
-    {
-        pickupExplosion.Play();
-    }
 
 }
 

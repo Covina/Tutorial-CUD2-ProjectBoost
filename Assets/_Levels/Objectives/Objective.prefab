@@ -9,77 +9,106 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1788822657419410}
+  m_RootGameObject: {fileID: 1270678913371294}
   m_IsPrefabParent: 1
---- !u!1 &1788822657419410
+--- !u!1 &1029917956890892
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4039879594484586}
-  - component: {fileID: 33400041691035810}
-  - component: {fileID: 65650435607020566}
-  - component: {fileID: 23754113315019822}
-  - component: {fileID: 114365265784764820}
+  - component: {fileID: 4920234805254918}
+  - component: {fileID: 33439403852906476}
+  - component: {fileID: 23093524221456262}
   m_Layer: 0
-  m_Name: ObjectiveCube
+  m_Name: Objective Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1801849346348548
+--- !u!1 &1270678913371294
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4132731793621186}
-  - component: {fileID: 198456119006024500}
-  - component: {fileID: 199007720119093848}
+  - component: {fileID: 4788803613064848}
+  - component: {fileID: 65590810939233326}
+  - component: {fileID: 114351056381289258}
   m_Layer: 0
-  m_Name: Objective PFX
+  m_Name: Objective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4039879594484586
+--- !u!1 &1323164500790518
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4593488881718574}
+  - component: {fileID: 198786977304142934}
+  - component: {fileID: 199398423054974954}
+  m_Layer: 0
+  m_Name: Idle PFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4593488881718574
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788822657419410}
+  m_GameObject: {fileID: 1323164500790518}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_Children: []
+  m_Father: {fileID: 4920234805254918}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4788803613064848
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270678913371294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.6, y: 28.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4132731793621186}
+  - {fileID: 4920234805254918}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4132731793621186
+--- !u!4 &4920234805254918
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1801849346348548}
+  m_GameObject: {fileID: 1029917956890892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4039879594484586}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_Children:
+  - {fileID: 4593488881718574}
+  m_Father: {fileID: 4788803613064848}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23754113315019822
+--- !u!23 &23093524221456262
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788822657419410}
+  m_GameObject: {fileID: 1029917956890892}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -106,31 +135,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33400041691035810
+--- !u!33 &33439403852906476
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788822657419410}
+  m_GameObject: {fileID: 1029917956890892}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65650435607020566
+--- !u!65 &65590810939233326
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788822657419410}
+  m_GameObject: {fileID: 1270678913371294}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114365265784764820
+--- !u!114 &114351056381289258
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788822657419410}
+  m_GameObject: {fileID: 1270678913371294}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2663b6682486914d816817962a52110, type: 3}
@@ -138,12 +167,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singleObjectiveCollectedSFX: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba,
     type: 3}
---- !u!198 &198456119006024500
+  objectivePickupPFX: {fileID: 1304733105867998, guid: d2858c4cd654d884b9b7b56760eea400,
+    type: 2}
+--- !u!198 &198786977304142934
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1801849346348548}
+  m_GameObject: {fileID: 1323164500790518}
   serializedVersion: 5
   lengthInSec: 5
   simulationSpeed: 1
@@ -197,7 +228,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 420466952
+  randomSeed: 736854452
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -245,7 +276,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -349,7 +380,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3400,13 +3431,13 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!199 &199007720119093848
+--- !u!199 &199398423054974954
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1801849346348548}
+  m_GameObject: {fileID: 1323164500790518}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

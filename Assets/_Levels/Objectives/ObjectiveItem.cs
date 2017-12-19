@@ -7,9 +7,10 @@ public class ObjectiveItem : MonoBehaviour {
     // Sound effect on pickup
     public AudioClip singleObjectiveCollectedSFX;
 
+    [SerializeField] private GameObject objectivePickupPFX;
+
     // get reference to Level Objectives Manager
     private LevelObjectives levelObj;
-
 
     // Reference to GameManager to play the sound for pickup
     private AudioSource audioSource;
@@ -23,11 +24,6 @@ public class ObjectiveItem : MonoBehaviour {
         audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
 
@@ -36,10 +32,11 @@ public class ObjectiveItem : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             // Increment the count of items found
-            //levelObj.ObjectivesCollected += 1;
-
-            //Debug.Log("Calling  levelObj.CollectObjective()");
             levelObj.CollectObjective();
+
+            GameObject objectivePFXGO = Instantiate(objectivePickupPFX) as GameObject;
+            objectivePFXGO.transform.position = gameObject.transform.position;
+
 
             // play sound
             audioSource.PlayOneShot(singleObjectiveCollectedSFX);

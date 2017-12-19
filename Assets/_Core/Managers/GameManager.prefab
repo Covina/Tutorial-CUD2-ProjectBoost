@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4990615899080382}
-  - component: {fileID: 114476068045405052}
   - component: {fileID: 82595322478345878}
+  - component: {fileID: 114476068045405052}
   - component: {fileID: 114251780080800874}
   m_Layer: 0
   m_Name: GameManager
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05eadbeab15d66f44829efbbbdb0647e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allObjectivesCollectedSFX: {fileID: 0}
 --- !u!114 &114476068045405052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,3 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94b828b1d380f4e9ffaf037895efeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveTextContainer: {fileID: 0}
+  objectivesCollectedTextValue: {fileID: 0}

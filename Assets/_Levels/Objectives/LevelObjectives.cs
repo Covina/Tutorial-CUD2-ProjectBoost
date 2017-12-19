@@ -57,8 +57,6 @@ public class LevelObjectives : MonoBehaviour {
 
         // store how many objectives there are in this level
         objectiveCount = GameObject.FindObjectsOfType<ObjectiveItem>().Length;
-        //Debug.Log("LevelObjectives.objectiveCount: " + objectiveCount);
-
 
         // Get reference to the landing pad
         landingPad = GameObject.FindGameObjectWithTag("LandingPad");
@@ -72,7 +70,6 @@ public class LevelObjectives : MonoBehaviour {
         // If this level has objectives, hide the Exit
         if(objectiveCount > 0) {
 
-            
             levelHasObjectives = true;
 
             //Debug.Log("LevelObjectives Start(): objectiveCount > 0 so we are Setting levelHasObjectives to TRUE");

@@ -13,6 +13,9 @@ public class FuelBoost : MonoBehaviour {
     private AudioSource gmAudioSource;
     public AudioClip boostAcquiredSFX;
 
+
+    [SerializeField] private GameObject pickupExplosion;
+
     private void Start()
     {
         gmAudioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
@@ -32,7 +35,13 @@ public class FuelBoost : MonoBehaviour {
 
 			AddFuel(fuelAmount);
 
-		}
+            // Fire off the boost particles
+            PlayBoostPickupEffects();
+
+            // destroy the fuel once picked up
+            Destroy(gameObject);
+
+        }
 
 
 	}
@@ -46,15 +55,22 @@ public class FuelBoost : MonoBehaviour {
         // Add fuel, capping it at the max
         temp.FuelCurrentValue = Mathf.Clamp (temp.FuelCurrentValue + amount, temp.FuelMinCapacity, temp.FuelMaxCapacity);
 
+	}
+
+
+    public void PlayBoostPickupEffects()
+    {
+
+        GameObject fuelPFXGO = Instantiate(pickupExplosion) as GameObject;
+        fuelPFXGO.transform.position = gameObject.transform.position;
+
+        // play particle effect
+        //fuelPFXGO.GetComponent<ParticleSystem>().Play();
+
         // play sound
         gmAudioSource.PlayOneShot(boostAcquiredSFX);
 
-        // Fire off the boost particles
-        rocketPlayer.PlayBoostPickupExplosionPFX();
+    }
 
-        // destroy the fuel once picked up
-        Destroy(gameObject);
-
-	}
 
 }
