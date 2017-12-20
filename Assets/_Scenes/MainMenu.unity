@@ -210,6 +210,17 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1929052976}
+    - target: {fileID: 114813682362808386, guid: cb653f674d23aa14683e28648ecb9e90,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 114430161168856502, guid: 84574739db2ee364498ed9ea8a7378d2,
+        type: 2}
+    - target: {fileID: 114813682362808386, guid: cb653f674d23aa14683e28648ecb9e90,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadWorldLobby
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb653f674d23aa14683e28648ecb9e90, type: 2}
   m_IsPrefabParent: 0

@@ -311,9 +311,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114430161168856502, guid: 84574739db2ee364498ed9ea8a7378d2,
-          type: 2}
-        m_MethodName: LoadFirstLevel
+      - m_Target: {fileID: 0}
+        m_MethodName: LoadWorldLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -3,99 +3,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneNavigationController : MonoBehaviour {
+public class SceneNavigationController : MonoBehaviour
+{
 
-	public static SceneNavigationController instance;
+    public static SceneNavigationController instance;
 
     // Current Scene Index
-	private int currentSceneIndex = 0;
+    private int currentSceneIndex = 0;
 
-	// how many times the player has tried to complete the level
-	private int attemptsTrackerValue = 1;
+    // how many times the player has tried to complete the level
+    private int attemptsTrackerValue = 1;
 
+    // Store the Packs and its list of level names
     private Dictionary<string, List<string>> gameLevels = new Dictionary<string, List<string>>();
 
+    //
     private string[] levelFolderNames = new string[1];
+    
+    private int currentLoadedLevelListIndex = 0;
+    private string currentLoadedLevelPackName;
+
+    // LevelPack01_TrainingGround
+    private List<string> pack01LevelNames = new List<string>();
+
+    private bool changed = false;
+
+    // Use this for initialization
+    void Awake()
+    {
+
+        MakeSingleton();
+
+    }
 
 
     // Use this for initialization
-    void Awake () {
+    void Start()
+    {
 
-		MakeSingleton ();
-		
-	}
+        // get the scene levels into a list
+        var loadedObjects = Resources.LoadAll("_Levels/LevelPack01_TrainingGround");
 
-
-	// Use this for initialization
-	void Start () {
-
-        // All Level Folder Names
-        levelFolderNames[0] = "LevelPack01_TrainingGround";
-
-        // TODO put this into a foreach.
-
-        // get the scene levels into an array
-        var loadedObjects = Resources.LoadAll("_Levels/" + levelFolderNames[0]);
-
-        List<string> loadedNames = new List<string>();
-
-        foreach(var o in loadedObjects)
+        foreach (var o in loadedObjects)
         {
-            loadedNames.Add(o.name);
-            //Debug.Log("Loading level name " + o.name);
+            pack01LevelNames.Add(o.name);
+            Debug.Log("Adding level: " + o.name);
         }
 
-        Debug.Log("loadedNames.count: " + loadedNames.Count);
+        gameLevels.Add("LevelPack01_TrainingGround", pack01LevelNames);
 
-        // add into dictionary
-        gameLevels.Add("levelpack01", loadedNames);
-
+        Debug.Log("Total Levels in loadedNames.count: " + pack01LevelNames.Count);
+        Debug.Log("gameLevel.Count: " + gameLevels.Count);
 
     }
 
-	/// <summary>
-	/// Makes the singleton.
-	/// </summary>
-	private void MakeSingleton() 
-	{
 
-		if (instance == null) {
-			instance = this;
-		} else {
-			Destroy(gameObject);
-		}
+    /// <summary>
+    /// Makes the singleton.
+    /// </summary>
+    private void MakeSingleton()
+    {
 
-		DontDestroyOnLoad(gameObject);
-	}
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
 
-	/// <summary>
+    /// <summary>
     /// Loads the main menu.
     /// </summary>
-    public void LoadMainMenu() 
+    public void LoadMainMenu()
     {
-        //Debug.Log("LoadMainMenu: currentSceneIndex : " + currentSceneIndex);
-
-        SceneManager.LoadScene ("MainMenu");
-
+        SceneManager.LoadScene("MainMenu");
     }
 
-	/// <summary>
-	/// Loads the first level.
-	/// </summary>
-    public void LoadFirstLevel()
+    /// <summary>
+    /// Loads the lobby
+    /// </summary>
+    public void LoadWorldLobby()
     {
-
         // Load the first level based on index position
-        SceneManager.LoadScene(1);
-
+        SceneManager.LoadScene("WorldLobby");
     }
+
+    /// <summary>
+    /// Shortcut to load end credits
+    /// </summary>
+    private static void LoadEndCredits()
+    {
+        SceneManager.LoadScene("EndCredits");
+    }
+
+
+
 
     /// <summary>
     /// Loads the next level.
     /// </summary>
-	public void LoadNextLevel ()
-	{
+	public void LoadNextLevel()
+    {
 
         // Set current scene index.
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -105,9 +119,57 @@ public class SceneNavigationController : MonoBehaviour {
 
         //Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
 
-		SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadScene(nextSceneIndex);
 
     }
+
+
+    /// <summary>
+    /// Loads the first level.
+    /// </summary>
+    public void LoadStartingLevelInPack(string levelPackName)
+    {
+
+        // Set which pack we're using
+        currentLoadedLevelPackName = levelPackName;
+
+        // Get level list to load
+        List<string> levelList = gameLevels[levelPackName];
+
+        //Debug.Log("levelList[0]: " + levelList[0]);
+
+        // Load the first level based on index position
+        SceneManager.LoadScene(levelList[0]);
+
+    }
+
+    /// <summary>
+    /// Loads the next level.
+    /// </summary>
+	public void LoadNextLevelInPack()
+    {
+
+        // Increment to next scene
+        currentLoadedLevelListIndex += 1;
+
+        // Get info on which to load
+        List<string> levelList = gameLevels[currentLoadedLevelPackName];
+
+        if (currentLoadedLevelListIndex > levelList.Count)
+        {
+            LoadEndCredits();
+        }
+        else
+        {
+
+            // Load the first level based on index position
+            SceneManager.LoadScene(levelList[currentLoadedLevelListIndex]);
+
+        }
+
+    }
+
+
 
     /// <summary>
     /// Reloads the level.
@@ -119,6 +181,16 @@ public class SceneNavigationController : MonoBehaviour {
     }
 
 
+    public void DisplayDictionary()
+    {
 
+        foreach (KeyValuePair<string, List<string>> entry in gameLevels)
+        {
+            // do something with entry.Value or entry.Key
+            Debug.Log("gamelevel key: " + entry.Key);
+        }
+
+
+    }
 
 }

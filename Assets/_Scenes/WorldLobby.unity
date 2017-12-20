@@ -657,16 +657,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114430161168856502, guid: 84574739db2ee364498ed9ea8a7378d2,
-          type: 2}
-        m_MethodName: LoadFirstLevel
-        m_Mode: 1
+      - m_Target: {fileID: 1496721628}
+        m_MethodName: LoadStartingLevelInPack
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LevelPack01_TrainingGround
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -810,6 +809,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c98ad2fbfb4ab6c4989709deda68e461, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1496721628 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114430161168856502, guid: 84574739db2ee364498ed9ea8a7378d2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1561649540}
+  m_Script: {fileID: 11500000, guid: d66cc49f56499ca4f97eb67fe4aceffa, type: 3}
 --- !u!1 &1512848942
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,14 +895,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114430161168856502, guid: 84574739db2ee364498ed9ea8a7378d2,
           type: 2}
-        m_MethodName: LoadFirstLevel
-        m_Mode: 1
+        m_MethodName: LoadStartingLevelInPack
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LevelPack02_EarthDusk
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
