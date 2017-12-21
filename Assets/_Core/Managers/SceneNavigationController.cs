@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneNavigationController : MonoBehaviour
 {
 
-    public static SceneNavigationController instance;
+    public static SceneNavigationController instance = null;
 
     // Current Scene Index
     private int currentSceneIndex = 0;
@@ -18,7 +18,7 @@ public class SceneNavigationController : MonoBehaviour
     private Dictionary<string, List<string>> gameLevels = new Dictionary<string, List<string>>();
 
     //
-    private string[] levelFolderNames = new string[1];
+    private List<string> levelFolderNames = new List<string>();
     
     private int currentLoadedLevelListIndex = 0;
     private string currentLoadedLevelPackName;
@@ -32,7 +32,16 @@ public class SceneNavigationController : MonoBehaviour
     void Awake()
     {
 
-        MakeSingleton();
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
 
     }
 
@@ -40,40 +49,30 @@ public class SceneNavigationController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // TODO - Move the content list somewhere else.
+        levelFolderNames.Add("LevelPack01_TrainingGround");
+        levelFolderNames.Add("LevelPack02_EarthDusk");
+        levelFolderNames.Add("LevelPack03_HeavyPlanet");
 
-        // get the scene levels into a list
-        var loadedObjects = Resources.LoadAll("_Levels/LevelPack01_TrainingGround");
-
-        foreach (var o in loadedObjects)
+        foreach(string folderName in levelFolderNames)
         {
-            pack01LevelNames.Add(o.name);
-            Debug.Log("Adding level: " + o.name);
+
+            // get the scene levels into a list
+            var loadedObjects = Resources.LoadAll(folderName + "/Levels", typeof(Scene));
+
+            foreach (var o in loadedObjects)
+            {
+                pack01LevelNames.Add(o.name);
+                Debug.Log("Adding level: " + o.name);
+            }
+
+            gameLevels.Add(folderName, pack01LevelNames);
+
+            //Debug.Log("Total Levels in loadedNames.count: " + pack01LevelNames.Count);
+            //Debug.Log("gameLevel.Count: " + gameLevels.Count);
+
         }
-
-        gameLevels.Add("LevelPack01_TrainingGround", pack01LevelNames);
-
-        Debug.Log("Total Levels in loadedNames.count: " + pack01LevelNames.Count);
-        Debug.Log("gameLevel.Count: " + gameLevels.Count);
-
-    }
-
-
-    /// <summary>
-    /// Makes the singleton.
-    /// </summary>
-    private void MakeSingleton()
-    {
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
+        
     }
 
 
@@ -181,16 +180,16 @@ public class SceneNavigationController : MonoBehaviour
     }
 
 
-    public void DisplayDictionary()
-    {
+    //public void DisplayDictionary()
+    //{
 
-        foreach (KeyValuePair<string, List<string>> entry in gameLevels)
-        {
-            // do something with entry.Value or entry.Key
-            Debug.Log("gamelevel key: " + entry.Key);
-        }
+    //    foreach (KeyValuePair<string, List<string>> entry in gameLevels)
+    //    {
+    //        // do something with entry.Value or entry.Key
+    //        Debug.Log("gamelevel key: " + entry.Key);
+    //    }
 
 
-    }
+    //}
 
 }
