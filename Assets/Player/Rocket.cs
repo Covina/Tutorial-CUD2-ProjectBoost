@@ -356,13 +356,24 @@ public class Rocket : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// Start a player death countdown once they run out of fuel
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator OutOfThrustCountdown()
     {
+        // TODO - Consider removing this feature
 
+        // Countdown till explosion!
         yield return new WaitForSeconds(emptyThrustExplosionDelay);
 
-        StartCoroutine(PlayerDeath());
+        // Last ditch check; They were still unable to get more fuel
+        if (fuelCurrentValue <= 0)
+        {
+            // Player blows up
+            StartCoroutine(PlayerDeath());
+
+        }
 
 
     }
