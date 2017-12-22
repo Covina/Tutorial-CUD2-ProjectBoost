@@ -321,11 +321,9 @@ public class Rocket : MonoBehaviour {
 
         successParticles.Play();
 
-
 		yield return new WaitForSeconds(levelLoadDelay);
 
-		SceneNavigationController.instance.LoadNextLevel();
-
+        SceneNavigationController.instance.LoadNextLevel();
     }
 
 

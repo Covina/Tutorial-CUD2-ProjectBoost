@@ -16,7 +16,7 @@ public class ClickHandler : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        sceneNavigationController.LoadNextLevelInPack();
+        sceneNavigationController.LoadNextLevel();
     }
 
     public void RetryLevel()

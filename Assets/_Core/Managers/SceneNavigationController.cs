@@ -18,13 +18,30 @@ public class SceneNavigationController : MonoBehaviour
     private Dictionary<string, List<string>> gameLevels = new Dictionary<string, List<string>>();
 
     //
-    private List<string> levelFolderNames = new List<string>();
-    
+    private List<string> contentPackFolders = new List<string>();
+    public List<string> ContentPackFolders {
+        get
+        {
+            return contentPackFolders;
+        }
+    }
+
     private int currentLoadedLevelListIndex = 0;
+    public int CurrentLoadedLevelListIndex { get; set; }
+
     private string currentLoadedLevelPackName;
+    public string CurrentLoadedLevelPackName {
+        get
+        {
+            return currentLoadedLevelPackName;
+        }
+        set {
+            currentLoadedLevelPackName = value;
+        }
+    }
 
     // LevelPack01_TrainingGround
-    private List<string> pack01LevelNames = new List<string>();
+    private List<string> levelFileNames = new List<string>();
 
     private bool changed = false;
 
@@ -50,26 +67,27 @@ public class SceneNavigationController : MonoBehaviour
     void Start()
     {
         // TODO - Move the content list somewhere else.
-        levelFolderNames.Add("LevelPack01_TrainingGround");
-        levelFolderNames.Add("LevelPack02_EarthDusk");
-        levelFolderNames.Add("LevelPack03_HeavyPlanet");
+        contentPackFolders.Add("LevelPack01_TrainingGround");
+        contentPackFolders.Add("LevelPack02_EarthDusk");
+        contentPackFolders.Add("LevelPack03_HeavyPlanet");
 
-        foreach(string folderName in levelFolderNames)
+        foreach(string folderName in contentPackFolders)
         {
 
             // get the scene levels into a list
-            var loadedObjects = Resources.LoadAll(folderName + "/Levels", typeof(Scene));
+            var loadedObjects = Resources.LoadAll(folderName + "/Levels");
+            List<string> levelFileNames = new List<string>();
 
             foreach (var o in loadedObjects)
             {
-                pack01LevelNames.Add(o.name);
-                Debug.Log("Adding level: " + o.name);
+                levelFileNames.Add(o.name);
+                //Debug.Log("Adding level: " + o.name);
             }
 
-            gameLevels.Add(folderName, pack01LevelNames);
+            gameLevels.Add(folderName, levelFileNames);
 
-            //Debug.Log("Total Levels in loadedNames.count: " + pack01LevelNames.Count);
-            //Debug.Log("gameLevel.Count: " + gameLevels.Count);
+            Debug.Log("For Pack [" + folderName + "], adding " + levelFileNames.Count + " Levels.");
+            
 
         }
         
@@ -96,12 +114,18 @@ public class SceneNavigationController : MonoBehaviour
     /// <summary>
     /// Shortcut to load end credits
     /// </summary>
-    private static void LoadEndCredits()
+    public void LoadSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
+    /// <summary>
+    /// Shortcut to load end credits
+    /// </summary>
+    public void LoadEndCredits()
     {
         SceneManager.LoadScene("EndCredits");
     }
-
-
 
 
     /// <summary>
@@ -116,7 +140,7 @@ public class SceneNavigationController : MonoBehaviour
         // increment by 1
         int nextSceneIndex = currentSceneIndex + 1;
 
-        //Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
+        Debug.Log("LoadNextLevel() :: About to LoadNextLevel BuildIndex: " + nextSceneIndex);
 
         SceneManager.LoadScene(nextSceneIndex);
 
@@ -128,6 +152,7 @@ public class SceneNavigationController : MonoBehaviour
     /// </summary>
     public void LoadStartingLevelInPack(string levelPackName)
     {
+        Debug.Log("LoadStartingLevelInPack() called");
 
         // Set which pack we're using
         currentLoadedLevelPackName = levelPackName;
@@ -137,38 +162,13 @@ public class SceneNavigationController : MonoBehaviour
 
         //Debug.Log("levelList[0]: " + levelList[0]);
 
+        // Reset the Content List Index Position
+        currentLoadedLevelListIndex = 0;
+
         // Load the first level based on index position
         SceneManager.LoadScene(levelList[0]);
 
     }
-
-    /// <summary>
-    /// Loads the next level.
-    /// </summary>
-	public void LoadNextLevelInPack()
-    {
-
-        // Increment to next scene
-        currentLoadedLevelListIndex += 1;
-
-        // Get info on which to load
-        List<string> levelList = gameLevels[currentLoadedLevelPackName];
-
-        if (currentLoadedLevelListIndex > levelList.Count)
-        {
-            LoadEndCredits();
-        }
-        else
-        {
-
-            // Load the first level based on index position
-            SceneManager.LoadScene(levelList[currentLoadedLevelListIndex]);
-
-        }
-
-    }
-
-
 
     /// <summary>
     /// Reloads the level.
@@ -179,17 +179,5 @@ public class SceneNavigationController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
-    //public void DisplayDictionary()
-    //{
-
-    //    foreach (KeyValuePair<string, List<string>> entry in gameLevels)
-    //    {
-    //        // do something with entry.Value or entry.Key
-    //        Debug.Log("gamelevel key: " + entry.Key);
-    //    }
-
-
-    //}
 
 }

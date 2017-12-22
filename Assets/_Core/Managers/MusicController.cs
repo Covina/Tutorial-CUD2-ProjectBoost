@@ -6,6 +6,7 @@ public class MusicController : MonoBehaviour {
 
     public static MusicController instance;
 
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -14,7 +15,11 @@ public class MusicController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+
+        audioSource = GetComponent<AudioSource>();
+
+        InitializeVolume();
+
 	}
 	
 	// Update is called once per frame
@@ -34,5 +39,31 @@ public class MusicController : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+
+    public void AdjustVolume(float newVolume)
+    {
+
+        audioSource.volume = newVolume;
+
+        PlayerPrefs.SetFloat("VOLUME", newVolume);
+
+    }
+
+    public void InitializeVolume()
+    {
+        // Check player prefs
+        if (PlayerPrefs.HasKey("VOLUME"))
+        {
+            float volumeSetting = PlayerPrefs.GetFloat("VOLUME");
+
+            audioSource.volume = volumeSetting;
+
+        } else
+        {
+            audioSource.volume = 0.5f;
+        }
+            
     }
 }
