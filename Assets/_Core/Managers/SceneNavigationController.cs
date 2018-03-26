@@ -65,7 +65,13 @@ public class SceneNavigationController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
+    /// <summary>
+    /// Loads the main menu.
+    /// </summary>
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
     /// <summary>
     /// Loads the main menu.

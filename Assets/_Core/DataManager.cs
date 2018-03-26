@@ -68,8 +68,8 @@ public class DataManager : MonoBehaviour {
         string keyPack02 = LEVELPACK02;
 
         List<string> levelListPack02 = new List<string>();
-        levelListPack01.Add("02_01");
-        levelListPack01.Add("02_02");
+        levelListPack02.Add("02_01");
+        levelListPack02.Add("02_02");
         //levelListPack01.Add("01_03");
         //levelListPack01.Add("01_04");
         //levelListPack01.Add("01_05");
