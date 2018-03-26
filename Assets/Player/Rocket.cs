@@ -363,7 +363,6 @@ public class Rocket : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator OutOfThrustCountdown()
     {
-        // TODO - Consider removing this feature
 
         // Countdown till explosion!
         yield return new WaitForSeconds(emptyThrustExplosionDelay);

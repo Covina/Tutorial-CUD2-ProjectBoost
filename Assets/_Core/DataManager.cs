@@ -10,21 +10,37 @@ public class DataManager : MonoBehaviour {
     public const string LEVELPACK02 = "LevelPack02";
 
 
-    public Dictionary<string, List<string>> worldLevelSceneList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> WorldLevelSceneList
+    private List<string> levelPackList = new List<string>();
+    public List<string> LevelPackList
     {
         get
         {
-            return worldLevelSceneList;
+            return levelPackList;
         }
 
     }
+
+    public Dictionary<string, List<string>> worldLevelSceneDictionary = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> WorldLevelSceneDictionary
+    {
+        get
+        {
+            return worldLevelSceneDictionary;
+        }
+
+    }
+
+
+    public string lastLevelName;
+
 
     void Awake()
     {
         MakeSingleton();
 
-        GenerateWorldLevelList();
+        GenerateWorldLevelPackList();
+
+        GenerateWorldLevelDictionary();
 
     }
 
@@ -42,7 +58,13 @@ public class DataManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    private void GenerateWorldLevelList()
+    private void GenerateWorldLevelPackList()
+    {
+        levelPackList.Add(LEVELPACK01);
+        levelPackList.Add(LEVELPACK02);
+    }
+
+    private void GenerateWorldLevelDictionary()
     {
         // WORLD 1 - TRAINING GROUND
         string keyPack01 = LEVELPACK01;
@@ -60,7 +82,7 @@ public class DataManager : MonoBehaviour {
         levelListPack01.Add("01_10");
 
         // ADD TO DICTIONARY
-        worldLevelSceneList.Add(keyPack01, levelListPack01);
+        worldLevelSceneDictionary.Add(keyPack01, levelListPack01);
 
 
 
@@ -80,7 +102,7 @@ public class DataManager : MonoBehaviour {
         //levelListPack01.Add("01_10");
 
         // Add it to the dictionary
-        worldLevelSceneList.Add(keyPack02, levelListPack02);
+        worldLevelSceneDictionary.Add(keyPack02, levelListPack02);
     }
 
     /// <summary>
@@ -90,9 +112,9 @@ public class DataManager : MonoBehaviour {
     /// <returns></returns>
     public List<string> GetLevelList(string packName)
     {
-        if(worldLevelSceneList.ContainsKey(packName))
+        if(worldLevelSceneDictionary.ContainsKey(packName))
         {
-            return worldLevelSceneList[packName];
+            return worldLevelSceneDictionary[packName];
         }
 
         Debug.LogWarning("DataManager.GetLevelList(" + packName + ") returned null");

@@ -21,7 +21,8 @@ public class TransitionScene : MonoBehaviour {
         yield return new WaitForSeconds(4.0f);
 
         // load the first level in the next pack
-        snc.LoadNextLevel();
+        //snc.LoadNextLevel();
+        snc.LoadNextWorld();
     }
 
 }

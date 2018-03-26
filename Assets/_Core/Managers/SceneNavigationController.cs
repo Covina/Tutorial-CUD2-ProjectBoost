@@ -3,25 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(DataManager))]
 public class SceneNavigationController : MonoBehaviour
 {
 
     public static SceneNavigationController Instance = null;
 
     // Current Scene Index
-    private int currentSceneIndex = 0;
+    private int currentLevelIndex = 0;
+    public int CurrentLevelIndex
+    {
+        get
+        {
+            return currentLevelIndex;
+        }
+        set
+        {
+            currentLevelIndex = value;
+        }
+    }
+
+    private string currentSceneName;
+    public string CurrentSceneName
+    {
+        get
+        {
+            return currentSceneName;
+        }
+        set
+        {
+            currentSceneName = value;
+        }
+    }
+
+    private int currentWorldIndex = 0;
+    public int CurrentWorldIndex
+    {
+        get
+        {
+            return currentWorldIndex;
+        }
+        set
+        {
+            currentWorldIndex = value;
+        }
+    }
 
     // how many times the player has tried to complete the level
     private int attemptsTrackerValue = 1;
 
-    //
-    private List<string> contentPackFolders = new List<string>();
-    public List<string> ContentPackFolders {
-        get
-        {
-            return contentPackFolders;
-        }
-    }
 
     private int currentLoadedLevelListIndex = 0;
     public int CurrentLoadedLevelListIndex { get; set; }
@@ -37,10 +67,8 @@ public class SceneNavigationController : MonoBehaviour
         }
     }
 
-    // LevelPack01_TrainingGround
-    private List<string> levelFileNames = new List<string>();
 
-    private bool changed = false;
+    List<string> levelList = new List<string>();
 
 
     // Use this for initialization
@@ -98,6 +126,13 @@ public class SceneNavigationController : MonoBehaviour
         SceneManager.LoadScene("Settings");
     }
 
+    public void LoadTransition()
+    {
+        SceneManager.LoadScene("TransitionLoader");
+    }
+
+
+
     /// <summary>
     /// Shortcut to load end credits
     /// </summary>
@@ -106,47 +141,101 @@ public class SceneNavigationController : MonoBehaviour
         SceneManager.LoadScene("EndCredits");
     }
 
+    /// <summary>
+    /// Loads the first level of a given level pack
+    /// </summary>
+    public void LoadFirstLevelInPack(string levelPackName)
+    {
+        Debug.Log("LoadFirstLevelInPack(" + levelPackName + ") called");
+
+        // Set which pack we're using
+        currentLoadedLevelPackName = levelPackName;
+
+        // Get the string list of level names
+        levelList = DataManager.Instance.GetLevelList(levelPackName);
+
+        Debug.Log("levelList count: " + levelList.Count);
+
+        //// Reset the Content List Index Position
+        //currentLoadedLevelListIndex = 0;
+
+        // Load the first level based on index position
+        SceneManager.LoadScene(levelList[0]);
+
+    }
+
 
     /// <summary>
     /// Loads the next level.
     /// </summary>
 	public void LoadNextLevel()
     {
+        SetCurrentSceneData();
 
-        // Set current scene index.
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // Check if we are at the last level?
+        if (currentLevelIndex == levelList.Count - 1)
+        {
+            LoadTransition();
 
-        // increment by 1
-        int nextSceneIndex = currentSceneIndex + 1;
+        }
+        else
+        {
+            // LOAD NEXT LEVEL WITHIN THE PACK
 
-        Debug.Log("LoadNextLevel() :: About to LoadNextLevel BuildIndex: " + nextSceneIndex);
+            // increment by 1
+            int nextSceneIndex = currentLevelIndex + 1;
 
-        SceneManager.LoadScene(nextSceneIndex);
+            Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
+
+            SceneManager.LoadScene(levelList[nextSceneIndex]);
+
+        }
 
     }
 
-
-    /// <summary>
-    /// Loads the first level.
-    /// </summary>
-    public void LoadStartingLevelInPack(string levelPackName)
+    public void LoadNextWorld()
     {
-        Debug.Log("LoadStartingLevelInPack(" + levelPackName + ") called");
+        Debug.Log("Last level detected");
 
-        List<string> levelList = DataManager.Instance.GetLevelList(levelPackName);
+        // Is there another world?
+        int nextWorldIndex = currentWorldIndex + 1;
 
-        Debug.Log("levelList count: " + levelList.Count);
+        if (DataManager.Instance.LevelPackList[nextWorldIndex] != null)
+        {
+            // LOAD FIRST LEVEL IN NEXT WORLD
+            Debug.Log("Another world is available...");
 
-        // Set which pack we're using
-        currentLoadedLevelPackName = levelPackName;
+            // get new world name
+            string newWorldPackname = DataManager.Instance.LevelPackList[nextWorldIndex];
 
-        // Reset the Content List Index Position
-        currentLoadedLevelListIndex = 0;
+            // Load the first level
+            LoadFirstLevelInPack(newWorldPackname);
 
-        // Load the first level based on index position
-        SceneManager.LoadScene(levelList[0]);
-
+        }
+        else
+        {
+            // WE ARE AT THE VERY END... no more worlds nor levels
+            LoadEndCredits();
+        }
     }
+
+    private void SetCurrentSceneData()
+    {
+        // Set current scene name
+        currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Set current levelList index number
+        currentLevelIndex = levelList.IndexOf(currentSceneName);
+
+        if (currentLoadedLevelPackName == null)
+        {
+            currentLoadedLevelPackName = FindWorldLevelPackname(currentSceneName);
+        }
+
+        // Get the current world index in the list
+        currentWorldIndex = DataManager.Instance.LevelPackList.IndexOf(currentLoadedLevelPackName);
+    }
+
 
     /// <summary>
     /// Reloads the level.
@@ -157,5 +246,26 @@ public class SceneNavigationController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+
+    private string FindWorldLevelPackname(string sceneName)
+    {
+       
+        // Loop through each pair
+        foreach(KeyValuePair<string, List<string>> entry in DataManager.Instance.WorldLevelSceneDictionary)
+        {
+            // Loop through the list for the given key
+            foreach(string levelName in entry.Value)
+            {
+                if(levelName == sceneName)
+                {
+                    return entry.Key;
+                }
+
+            }
+
+        }
+
+        return null;
+    }
 
 }

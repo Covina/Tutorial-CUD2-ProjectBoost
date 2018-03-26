@@ -616,12 +616,17 @@ Prefab:
     - target: {fileID: 114808072866582604, guid: a29a6a5e373126049a82368768e646b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: LevelPack02_EarthDusk
+      value: LevelPack02
       objectReference: {fileID: 0}
     - target: {fileID: 114874245404194006, guid: a29a6a5e373126049a82368768e646b0,
         type: 2}
       propertyPath: m_fontSizeMax
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114808072866582604, guid: a29a6a5e373126049a82368768e646b0,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadFirstLevelInPack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a29a6a5e373126049a82368768e646b0, type: 2}
@@ -923,7 +928,7 @@ Prefab:
     - target: {fileID: 114808072866582604, guid: a29a6a5e373126049a82368768e646b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadStartingLevelInPack
+      value: LoadFirstLevelInPack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a29a6a5e373126049a82368768e646b0, type: 2}
