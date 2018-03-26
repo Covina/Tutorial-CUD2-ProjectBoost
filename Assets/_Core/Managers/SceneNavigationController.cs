@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneNavigationController : MonoBehaviour
 {
 
-    public static SceneNavigationController instance = null;
+    public static SceneNavigationController Instance = null;
 
     // Current Scene Index
     private int currentSceneIndex = 0;
@@ -53,11 +53,11 @@ public class SceneNavigationController : MonoBehaviour
 
     private void MakeSingleton()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }

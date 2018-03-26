@@ -323,7 +323,7 @@ public class Rocket : MonoBehaviour {
 
 		yield return new WaitForSeconds(levelLoadDelay);
 
-        SceneNavigationController.instance.LoadNextLevel();
+        SceneNavigationController.Instance.LoadNextLevel();
     }
 
 
@@ -350,7 +350,7 @@ public class Rocket : MonoBehaviour {
 		yield return new WaitForSeconds(deathLoadDelay);
 
         // Reload the level
-		SceneNavigationController.instance.ReloadLevel();
+		SceneNavigationController.Instance.ReloadLevel();
 
 
     }
