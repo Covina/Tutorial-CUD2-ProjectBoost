@@ -14,9 +14,6 @@ public class SceneNavigationController : MonoBehaviour
     // how many times the player has tried to complete the level
     private int attemptsTrackerValue = 1;
 
-    // Store the Packs and its list of level names
-    private Dictionary<string, List<string>> gameLevels = new Dictionary<string, List<string>>();
-
     //
     private List<string> contentPackFolders = new List<string>();
     public List<string> ContentPackFolders {
@@ -45,10 +42,17 @@ public class SceneNavigationController : MonoBehaviour
 
     private bool changed = false;
 
+
     // Use this for initialization
     void Awake()
     {
+        MakeSingleton();
 
+    }
+
+
+    private void MakeSingleton()
+    {
         if (instance == null)
         {
             instance = this;
@@ -59,39 +63,8 @@ public class SceneNavigationController : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-
     }
 
-
-    // Use this for initialization
-    void Start()
-    {
-        // TODO - Move the content list somewhere else.
-        contentPackFolders.Add("LevelPack01_TrainingGround");
-        contentPackFolders.Add("LevelPack02_EarthDusk");
-        contentPackFolders.Add("LevelPack03_HeavyPlanet");
-
-        foreach(string folderName in contentPackFolders)
-        {
-
-            // get the scene levels into a list
-            var loadedObjects = Resources.LoadAll(folderName + "/Levels");
-            List<string> levelFileNames = new List<string>();
-
-            foreach (var o in loadedObjects)
-            {
-                levelFileNames.Add(o.name);
-                //Debug.Log("Adding level: " + o.name);
-            }
-
-            gameLevels.Add(folderName, levelFileNames);
-
-            Debug.Log("For Pack [" + folderName + "], adding " + levelFileNames.Count + " Levels.");
-            
-
-        }
-        
-    }
 
 
     /// <summary>
@@ -152,15 +125,14 @@ public class SceneNavigationController : MonoBehaviour
     /// </summary>
     public void LoadStartingLevelInPack(string levelPackName)
     {
-        Debug.Log("LoadStartingLevelInPack() called");
+        Debug.Log("LoadStartingLevelInPack(" + levelPackName + ") called");
+
+        List<string> levelList = DataManager.Instance.GetLevelList(levelPackName);
+
+        Debug.Log("levelList count: " + levelList.Count);
 
         // Set which pack we're using
         currentLoadedLevelPackName = levelPackName;
-
-        // Get level list to load
-        List<string> levelList = gameLevels[levelPackName];
-
-        //Debug.Log("levelList[0]: " + levelList[0]);
 
         // Reset the Content List Index Position
         currentLoadedLevelListIndex = 0;

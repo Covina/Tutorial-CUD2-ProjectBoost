@@ -379,6 +379,15 @@ public class Rocket : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Apply the world's physics settings
+    /// 
+    /// </summary>
+    private void ApplyWorldSettings()
+    {
+
+    }
+
 }
 
 
