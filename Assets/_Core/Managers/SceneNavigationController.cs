@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(DataManager))]
 public class SceneNavigationController : MonoBehaviour
 {
 
@@ -234,6 +233,8 @@ public class SceneNavigationController : MonoBehaviour
 
         // Get the current world index in the list
         currentWorldIndex = DataManager.Instance.LevelPackList.IndexOf(currentLoadedLevelPackName);
+
+
     }
 
 

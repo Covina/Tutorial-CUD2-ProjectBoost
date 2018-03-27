@@ -9,12 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 241fb309bc7275b428e50bf30450706e, type: 3}
-  m_Name: WorldData
+  m_Name: WorldData_Mecury2160
   m_EditorClassIdentifier: 
-  worldName: Training Ground
-  worldimage: {fileID: 21300000, guid: e3c1707b8429aab4a8d8a3ea1c8ca7fe, type: 3}
+  worldID: 2
+  worldName: Mercury 2160
+  worldimage: {fileID: 21300000, guid: d07cf3e83bb1d8e47bb4a72f9eb6d12d, type: 3}
+  levelsInPack: 0
   gravityX: 0
-  gravityY: -9.81
+  gravityY: -3.7
   mass: 0.15
   drag: 0.3
-  worldMusicLoop: {fileID: 8300000, guid: 6829fe662c50bc049b8a18823416ff14, type: 3}
+  worldMusicLoop: {fileID: 8300000, guid: 79196a68db5f1bb42b250e9b9b765fdd, type: 3}

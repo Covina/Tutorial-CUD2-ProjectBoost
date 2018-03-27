@@ -51,3 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe88127fd6c3074ba4f5a2da36cc2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldMetaFiles:
+  - {fileID: 11400000, guid: eb763a04060e10e42a555c1e91e7b491, type: 2}
+  - {fileID: 11400000, guid: b982d8b6f5b95a74cbd65c9742416eb4, type: 2}
+  currentWorldMetaFile: {fileID: 0}

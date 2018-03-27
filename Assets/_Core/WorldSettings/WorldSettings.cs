@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New World", menuName = "Wold Setting")]
+[CreateAssetMenu(fileName = "New World", menuName = "World Setting")]
 public class WorldSettings : ScriptableObject {
+
+    public int worldID = 0;
 
     public string worldName = "";
     public Sprite worldimage;
+
+    public int levelsInPack;
 
     public float gravityX = 0.0f;
     public float gravityY = -9.81f;

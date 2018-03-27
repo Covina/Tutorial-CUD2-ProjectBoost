@@ -31,8 +31,9 @@ public class DataManager : MonoBehaviour {
     }
 
 
-    public string lastLevelName;
+    public List<ScriptableObject> worldMetaFiles;
 
+    public ScriptableObject currentWorldMetaFile;
 
     void Awake()
     {
@@ -119,6 +120,12 @@ public class DataManager : MonoBehaviour {
 
         Debug.LogWarning("DataManager.GetLevelList(" + packName + ") returned null");
         return null;
+    }
+
+
+    public void SetCurrentWorldMetaFile()
+    {
+
     }
 
 }

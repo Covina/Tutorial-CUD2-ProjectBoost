@@ -103,16 +103,20 @@ public class Rocket : MonoBehaviour {
 
     public State state = State.Alive;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        ApplyWorldSettings();
+    }
+
+
+    // Use this for initialization
+    void Start () {
 
         // Get reference to the component
         rigidBody = GetComponent<Rigidbody>();
 
         // Get reference to the audio source component
         audioSource = GetComponent<AudioSource>();
-
-        
 
 	}
 	
@@ -385,6 +389,15 @@ public class Rocket : MonoBehaviour {
     /// </summary>
     private void ApplyWorldSettings()
     {
+        // TODO - Get the current world meta data settings
+        WorldData worldData = FindObjectOfType<WorldData>();
+
+        float gravitySetting = worldData.GetGravityY();
+
+        //Debug.Log("ApplyWorldSettings(): " + gravitySetting);
+
+        // TODO - Update Gravity
+        Physics.gravity = new Vector3(0, gravitySetting, 0);
 
     }
 
