@@ -401,6 +401,27 @@ public class Rocket : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Method for external thing to affect the rocket
+    /// </summary>
+    /// <param name="forceVector"></param>
+    public void ApplyOutsideForceVector(Vector3 forceVector)
+    {
+        Debug.Log("ApplyOutsideForceVector() called.");
+        rigidBody.AddForce(forceVector);
+
+    }
+
+
+    public void MoveTowardsPoint(Vector3 target, float speed)
+    {
+        Debug.Log("MoveTowardsPoint() called.");
+        float step = speed * Time.deltaTime;
+
+        transform.position = Vector3.MoveTowards(transform.position, target, step);
+
+    }
+
 }
 
 
