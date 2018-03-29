@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class RotateObject : MonoBehaviour {
 
-	// Rotation Speed
-	[SerializeField] private float rotationSpeed = 1f;
+    // Rotation Speed
+    [SerializeField] private float rotationSpeedX = 0f;
+    [SerializeField] private float rotationSpeedY = 0f;
+    [SerializeField] private float rotationSpeedZ = 0f;
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 		// rotate the object
-		transform.Rotate(1f * rotationSpeed, 0f, 0f);
+		transform.Rotate(rotationSpeedX, rotationSpeedY, rotationSpeedZ);
 
 	}
 }
