@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindVent : MonoBehaviour {
+public class SteamVent : MonoBehaviour {
 
 
     public Vector3 appliedForceVector = new Vector3(0f, 100f, 0f);

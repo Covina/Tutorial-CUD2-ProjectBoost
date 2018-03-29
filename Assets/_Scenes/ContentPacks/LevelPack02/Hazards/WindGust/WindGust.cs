@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WindGust : MonoBehaviour {
 
-    [SerializeField] private float timeToLive = 3.0f;
+    [SerializeField] private float timeToLive = 10.0f;
 
     // Track Time since spawned
     private float timeElapsed;
 
     // Length of time the wind will effect the player after contact
-    private float effectDuration = 0.25f;
+    //private float effectDuration = 0.25f;
 
     // has the wind made conctact with the player?
     private bool isEffecting = false;
@@ -37,7 +37,7 @@ public class WindGust : MonoBehaviour {
     // If we hit something, destroy the bullet
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("OnCollisionEnter() Wind collided with " + collision.gameObject.name);
+        Debug.Log("OnCollisionEnter() WindGustProjectile collided with " + collision.gameObject.name);
 
         if(isEffecting == false)
         {
