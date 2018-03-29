@@ -7,7 +7,7 @@ public class Wormhole : MonoBehaviour {
 
     public Transform singularityPoint;
 
-    private float gravityForce = 4f;
+    private float gravityForce = 50f;
 
     private bool isWithinRange = false;
 
@@ -54,9 +54,21 @@ public class Wormhole : MonoBehaviour {
 
     private void ApplyGravitySuction()
     {
-        Debug.Log("ApplyGravitySuction()");
 
-        player.MoveTowardsPoint(singularityPoint.transform.position, gravityForce);
+        if(isWithinRange)
+        {
+            Debug.Log("ApplyGravitySuction()");
+
+            // increase g-force when closer
+            float distanceFromSingularity = Vector3.Distance(singularityPoint.transform.position, player.transform.position);
+
+            float realGravityForce = gravityForce * ( 1 / distanceFromSingularity);
+
+            // Apply the calculated force
+            player.MoveTowardsPoint(singularityPoint.transform.position, realGravityForce);
+        }
+
+
 
 
     }

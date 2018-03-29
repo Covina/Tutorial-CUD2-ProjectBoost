@@ -407,7 +407,7 @@ public class Rocket : MonoBehaviour {
     /// <param name="forceVector"></param>
     public void ApplyOutsideForceVector(Vector3 forceVector)
     {
-        Debug.Log("ApplyOutsideForceVector() called.");
+        Debug.Log("ApplyOutsideForceVector(" + forceVector + ") called.");
         rigidBody.AddForce(forceVector);
 
     }
@@ -415,10 +415,12 @@ public class Rocket : MonoBehaviour {
 
     public void MoveTowardsPoint(Vector3 target, float speed)
     {
-        Debug.Log("MoveTowardsPoint() called.");
+        
         float step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, target, step);
+        rigidBody.AddForce((target - transform.position) * step);
+
+        Debug.Log("MoveTowardsPoint() called. CalcStep: " + step);
 
     }
 
