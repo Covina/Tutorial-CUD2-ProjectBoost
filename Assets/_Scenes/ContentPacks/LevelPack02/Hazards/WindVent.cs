@@ -14,10 +14,14 @@ public class WindVent : MonoBehaviour {
     private Rocket player;
 
 
+    private BoxCollider boxCollider;
+
     // Use this for initialization
     void Start () {
 
         player = FindObjectOfType<Rocket>();
+
+        boxCollider = GetComponent<BoxCollider>();
 
     }
 	
@@ -39,7 +43,7 @@ public class WindVent : MonoBehaviour {
             // Initiate Cooldown
             isCooldown = true;
 
-            StartCoroutine(DisableCooldown());
+            StartCoroutine(ApplyCooldown());
 
         }
 
@@ -61,22 +65,33 @@ public class WindVent : MonoBehaviour {
             // Initiate Cooldown
             isCooldown = true;
 
-            StartCoroutine(DisableCooldown());
+            StartCoroutine(ApplyCooldown());
         }
 
     }
 
 
-    IEnumerator DisableCooldown()
+    IEnumerator ApplyCooldown()
     {
+        ToggleAirCollider();
+
         yield return new WaitForSeconds(cooldownLength);
 
         isCooldown = false;
-
+        ToggleAirCollider();
 
     }
 
 
-    // TODO - Create an on/off toggle for the collider when air vent is on/off
+ 
+
+    // Toggle the Air Vent collider on/off
+    private void ToggleAirCollider()
+    {
+        // Set it to the opposite
+        boxCollider.enabled = !boxCollider.enabled;
+
+    }
+
 
 }
