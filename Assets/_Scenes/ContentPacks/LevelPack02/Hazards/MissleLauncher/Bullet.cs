@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour {
         // check if its expired
         if(timeElapsed >= timeToLive)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

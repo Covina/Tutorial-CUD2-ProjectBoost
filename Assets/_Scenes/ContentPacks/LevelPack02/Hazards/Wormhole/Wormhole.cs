@@ -33,8 +33,6 @@ public class Wormhole : MonoBehaviour {
 
         }
 
-
-
     }
 
 
@@ -74,9 +72,6 @@ public class Wormhole : MonoBehaviour {
             // Apply the calculated force
             player.MoveTowardsPoint(singularityPoint.transform.position, realGravityForce);
         }
-
-
-
 
     }
 
