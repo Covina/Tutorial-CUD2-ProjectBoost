@@ -6,6 +6,10 @@ public class WindGust : MonoBehaviour {
 
     [SerializeField] private float timeToLive = 10.0f;
 
+    [SerializeField] private Transform spawnLocation;
+
+    [SerializeField] private GameObject projectile;
+
     // Track Time since spawned
     private float timeElapsed;
 
@@ -56,7 +60,7 @@ public class WindGust : MonoBehaviour {
         // we've hit something
         isEffecting = true;
 
-        yield return new WaitForSeconds(effectDuration);
+        yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
 

@@ -23,6 +23,9 @@ public class SteamVent : MonoBehaviour {
 
         boxCollider = GetComponent<BoxCollider>();
 
+        appliedForceVector = transform.up * 100f;
+        Debug.Log("new appliedForceVector: " + appliedForceVector);
+
     }
 	
 

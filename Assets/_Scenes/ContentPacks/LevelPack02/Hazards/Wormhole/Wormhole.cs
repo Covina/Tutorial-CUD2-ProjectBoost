@@ -7,7 +7,7 @@ public class Wormhole : MonoBehaviour {
 
     public Transform singularityPoint;
 
-    private float gravityForce = 50f;
+    private float gravityForce = 60f;
 
     private bool isWithinRange = false;
 
@@ -20,35 +20,42 @@ public class Wormhole : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-
-	}
-
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player entered wormhole gravity");
 
-        isWithinRange = true;
-        ApplyGravitySuction();
-        
+        if(other.tag == "Player")
+        {
+            //Debug.Log("Player entered wormhole gravity");
+
+            isWithinRange = true;
+            ApplyGravitySuction();
+
+        }
+
+
 
     }
 
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Player still inside wormhole gravity");
 
-        isWithinRange = true;
-        ApplyGravitySuction();
+        if (other.tag == "Player")
+        {
+            //Debug.Log("Player still inside wormhole gravity");
+
+            isWithinRange = true;
+            ApplyGravitySuction();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        isWithinRange = false;
+        if (other.tag == "Player")
+        {
+            isWithinRange = false;
+        }
     }
 
 
@@ -57,7 +64,7 @@ public class Wormhole : MonoBehaviour {
 
         if(isWithinRange)
         {
-            Debug.Log("ApplyGravitySuction()");
+            //Debug.Log("ApplyGravitySuction()");
 
             // increase g-force when closer
             float distanceFromSingularity = Vector3.Distance(singularityPoint.transform.position, player.transform.position);

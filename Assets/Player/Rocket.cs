@@ -44,6 +44,8 @@ public class Rocket : MonoBehaviour {
 
     private bool isCollisionsDisabled = false;
 
+    private GameObject rocketBody;
+
     // if player runs out of thrust, explode them after 5 seconds
     private float emptyThrustExplosionDelay = 8.0f;
 
@@ -420,9 +422,35 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.AddForce((target - transform.position) * step);
 
-        Debug.Log("MoveTowardsPoint() called. CalcStep: " + step);
+        //Debug.Log("MoveTowardsPoint() called. CalcStep: " + step);
 
     }
+
+
+    public void AddConstantForce(Vector3 forceVector)
+    {
+
+        // Determine whether to add force component
+        if(gameObject.GetComponent<ConstantForce>() == null)
+        {
+            // Enable Constant Force
+            gameObject.AddComponent<ConstantForce>();
+        }
+
+        // Set force
+        //forceVector = new Vector3(-5f, 0f, 0f);
+        GetComponent<ConstantForce>().force = forceVector;
+
+        Debug.Log("AddConstantForce(" + forceVector + ")");
+
+
+    }
+
+    public void RemoveConstantForce()
+    {
+
+    }
+
 
 }
 
