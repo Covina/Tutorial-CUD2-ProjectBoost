@@ -17,21 +17,23 @@ public class FallingObject : MonoBehaviour {
 	private float rotationDirectionY = 1.0f;
 	private float rotationDirectionZ = 1.0f;
 
-    void Awake()
-    {
-
-        ttl = Random.Range(3.0f, 6.0f);
-
-    }
+    private float reductionAmount;
 
     // Use this for initialization
     void Start()
     {
 
-        StartCoroutine(RemoveRock());
+        if(ttl == 0f)
+        {
+            ttl = Random.Range(3.0f, 6.0f);
+        }
 
-		rotationDirectionY = Random.Range(-5.0f, 5.0f);
-		rotationDirectionZ = Random.Range(-5.0f, 5.0f);
+        rotationDirectionY = Random.Range(-5.0f, 5.0f);
+        rotationDirectionZ = Random.Range(-5.0f, 5.0f);
+
+        // Reduction amount per frame
+        reductionAmount = (transform.localScale.x / animationTime);
+
     }
 
     void Update ()
@@ -40,16 +42,24 @@ public class FallingObject : MonoBehaviour {
 		if (animateRockRemoval) {
 
 
-			// move it downward at a speed over each frame.
-			transform.position = new Vector3 (
-				transform.position.x, 
-				transform.position.y - (10 * Time.deltaTime), 
-				transform.position.z
-			);
+            //// move it downward at a speed over each frame.
+            //transform.position = new Vector3 (
+            //	transform.position.x, 
+            //	transform.position.y - (10 * Time.deltaTime), 
+            //	transform.position.z
+            //);
 
-		}
 
-		if (isFalling) {
+            // Scale it downward at a speed over each frame.
+            transform.localScale = new Vector3(
+                transform.localScale.x - (reductionAmount * Time.deltaTime),
+                transform.localScale.y - (reductionAmount * Time.deltaTime),
+                transform.localScale.z - (reductionAmount * Time.deltaTime)
+            );
+
+        }
+
+        if (isFalling) {
 
 			transform.Rotate (new Vector3(0f, rotationDirectionY, rotationDirectionZ) );
 		}
@@ -64,21 +74,22 @@ public class FallingObject : MonoBehaviour {
         yield return new WaitForSeconds(ttl);
 
 
-        if (gameObject.GetComponent<MeshCollider>() != null)
-        {
-            gameObject.GetComponent<MeshCollider>().enabled = false;
-        }
+        //if (gameObject.GetComponent<MeshCollider>() != null)
+        //{
+        //    gameObject.GetComponent<MeshCollider>().enabled = false;
+        //}
 
-        if (gameObject.GetComponent<SphereCollider>() != null)
-        {
-            gameObject.GetComponent<SphereCollider>().enabled = false;
-        }
+        //if (gameObject.GetComponent<SphereCollider>() != null)
+        //{
+        //    gameObject.GetComponent<SphereCollider>().enabled = false;
+        //}
 
 
         animateRockRemoval = true;
 
         yield return new WaitForSeconds(animationTime);
 
+        Debug.Log("TTL for " + gameObject.name + ": " + ttl);
         // remove the rock
         Destroy(gameObject);
     }
@@ -90,5 +101,12 @@ public class FallingObject : MonoBehaviour {
 
 		isFalling = false;
 
+        StartCoroutine(RemoveRock());
+
+    }
+
+    public void SetTTL(float min, float max)
+    {
+        ttl = Random.Range(min, max);
     }
 }

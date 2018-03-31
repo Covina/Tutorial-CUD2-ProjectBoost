@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingObjectSpawner : MonoBehaviour {
-
-    // Rock to spawn
-    [SerializeField] private GameObject fallingObject;
+    
 
     // Time delay
     public float spawnEverySeconds;
+
+    [Header("Falling Object")]
+    [SerializeField] private GameObject fallingObject;
+    public float minSecondsAlive;
+    public float maxSecondsAlive;
+
 
     private bool continueSpawningRocks = true;
 
@@ -19,7 +23,6 @@ public class FallingObjectSpawner : MonoBehaviour {
 
 	}
 	
-
 
     private IEnumerator Spawner()
     {
@@ -33,7 +36,6 @@ public class FallingObjectSpawner : MonoBehaviour {
             SpawnFallingObject();
 
         }
-   
 
     }
 
@@ -55,6 +57,8 @@ public class FallingObjectSpawner : MonoBehaviour {
 
         // parent the object under Container
         GameObject rock = Instantiate(fallingObject, objectSpawnTransform) as GameObject;
+
+        rock.GetComponent<FallingObject>().SetTTL(minSecondsAlive, maxSecondsAlive);
 
         // house it in the holder
         rock.transform.parent = GameObject.Find("RocksContainer").transform;
