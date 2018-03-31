@@ -19,7 +19,7 @@ public class ProjectileSpawner : MonoBehaviour {
     // Projectile Speed
     public float projectileSpeed;
 
-    public Vector3 directionVector;
+    //public Vector3 directionVector;
 
     private bool isSpawning = true;
 
@@ -63,8 +63,13 @@ public class ProjectileSpawner : MonoBehaviour {
         // Parent it in the holder
         projectile.transform.SetParent(projectileContainer.transform);
 
+        // Point bullet in same direction
+        projectile.transform.up = transform.up;
+
         // Fire it in specified direction
-        projectile.GetComponent<Rigidbody>().velocity = directionVector * projectileSpeed;
+        projectile.GetComponent<Rigidbody>().velocity = transform.up * projectileSpeed;
+
+        
 
     }
 

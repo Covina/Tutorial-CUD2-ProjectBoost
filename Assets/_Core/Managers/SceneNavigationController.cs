@@ -169,7 +169,11 @@ public class SceneNavigationController : MonoBehaviour
     /// </summary>
 	public void LoadNextLevel()
     {
+        Debug.Log("LoadNextLevel() Called");
+
         SetCurrentSceneData();
+
+        
 
         // Check if we are at the last level?
         if (currentLevelIndex == levelList.Count - 1)
@@ -220,21 +224,36 @@ public class SceneNavigationController : MonoBehaviour
 
     private void SetCurrentSceneData()
     {
+        //Debug.Log("SetCurrentSceneData() ---------------");
         // Set current scene name
         currentSceneName = SceneManager.GetActiveScene().name;
+        //Debug.Log("Setting currentSceneName[" + currentSceneName + "]");
 
-        // Set current levelList index number
-        currentLevelIndex = levelList.IndexOf(currentSceneName);
 
         if (currentLoadedLevelPackName == null)
         {
             currentLoadedLevelPackName = FindWorldLevelPackname(currentSceneName);
         }
+        //Debug.Log("currentLoadedLevelPackName[" + currentLoadedLevelPackName + "]");
+
+
+        // Set current levelList index number
+        if (levelList.Count < 1)
+        {
+            levelList = DataManager.Instance.GetLevelList(currentLoadedLevelPackName);
+        }
+        currentLevelIndex = levelList.IndexOf(currentSceneName);
+        //Debug.Log("currentLevelIndex[" + currentLevelIndex + "]");
+
+
+
 
         // Get the current world index in the list
         currentWorldIndex = DataManager.Instance.LevelPackList.IndexOf(currentLoadedLevelPackName);
 
+        //Debug.Log("currentWorldIndex[" + currentWorldIndex + "])");
 
+        //Debug.Log("/////////////////////");
     }
 
 
