@@ -52,6 +52,12 @@ EditorBuildSettings:
     guid: ec68e95d69884d04988887ea60fb7479
   - enabled: 1
     path: Assets/_Scenes/ContentPacks/LevelPack02/Levels/02_03.unity
+    guid: 1f7b0038b1744d640b5854a0f326012f
+  - enabled: 1
+    path: Assets/_Scenes/ContentPacks/LevelPack02/Levels/02_04.unity
+    guid: ef990751901e4004592238f2ae048383
+  - enabled: 1
+    path: Assets/_Scenes/ContentPacks/LevelPack02/Levels/02_05.unity
     guid: 6bee1f8ccf741aa4487a56498c095ccb
   - enabled: 1
     path: Assets/_Scenes/EndCredits.unity
