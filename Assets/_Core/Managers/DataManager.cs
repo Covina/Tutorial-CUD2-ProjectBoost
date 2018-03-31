@@ -93,6 +93,9 @@ public class DataManager : MonoBehaviour {
         List<string> levelListPack02 = new List<string>();
         levelListPack02.Add("02_01");
         levelListPack02.Add("02_02");
+        levelListPack02.Add("02_03");
+        levelListPack02.Add("02_04");
+        levelListPack02.Add("02_05");
         //levelListPack01.Add("01_03");
         //levelListPack01.Add("01_04");
         //levelListPack01.Add("01_05");
