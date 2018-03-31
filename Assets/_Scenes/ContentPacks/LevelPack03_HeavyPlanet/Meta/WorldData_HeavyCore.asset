@@ -20,3 +20,5 @@ MonoBehaviour:
   mass: 0.15
   drag: 0.3
   worldMusicLoop: {fileID: 8300000, guid: 79196a68db5f1bb42b250e9b9b765fdd, type: 3}
+  staticHazardMaterial: {fileID: 2100000, guid: 1c42e93b238550f448d4931456425eff,
+    type: 2}

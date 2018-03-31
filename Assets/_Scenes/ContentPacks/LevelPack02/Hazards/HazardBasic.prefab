@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33747710966048388}
   - component: {fileID: 65315402880201474}
   - component: {fileID: 23735637851092058}
+  - component: {fileID: 114301618169746780}
   m_Layer: 0
   m_Name: HazardBasic
   m_TagString: Hazard
@@ -95,3 +96,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114301618169746780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1001613023948106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d00b045688a76b47834fcc5ee741f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

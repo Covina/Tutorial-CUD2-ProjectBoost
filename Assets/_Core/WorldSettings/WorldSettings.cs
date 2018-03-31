@@ -21,5 +21,6 @@ public class WorldSettings : ScriptableObject {
 
     public AudioClip worldMusicLoop;
 
+    public Material staticHazardMaterial;
 
 }

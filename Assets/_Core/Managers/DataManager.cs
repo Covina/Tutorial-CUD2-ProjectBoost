@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour {
 
     public List<ScriptableObject> worldMetaFiles;
 
-    public ScriptableObject currentWorldMetaFile;
+    public WorldSettings currentWorldMetaFile;
 
     void Awake()
     {
