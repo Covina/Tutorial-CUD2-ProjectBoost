@@ -16,7 +16,7 @@ public class TransitionScene : MonoBehaviour {
 
         StartCoroutine(NavToNext());
 
-        Debug.Log("transitionScene snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
+        //Debug.Log("transitionScene snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
     }
 	
 
@@ -25,7 +25,7 @@ public class TransitionScene : MonoBehaviour {
 
         yield return new WaitForSeconds(4.0f);
 
-        Debug.Log("transitionScene NavToNext() snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
+        //Debug.Log("transitionScene NavToNext() snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
 
         // load the first level in the next pack
         //snc.LoadNextLevel();
