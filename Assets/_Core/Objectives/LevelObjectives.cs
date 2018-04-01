@@ -62,10 +62,10 @@ public class LevelObjectives : MonoBehaviour {
         landingPad = GameObject.FindGameObjectWithTag("LandingPad");
 
         // Get Audio source to play SFX when all objectives have been collected
-        audioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         // get a reference to the canvas
-        canvasManager = GetComponent<CanvasManager>();
+        canvasManager = FindObjectOfType<CanvasManager>();
 
         // If this level has objectives, hide the Exit
         if(objectiveCount > 0) {

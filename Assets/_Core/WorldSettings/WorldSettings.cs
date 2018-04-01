@@ -18,7 +18,6 @@ public class WorldSettings : ScriptableObject {
     public float mass = 0.15f;
     public float drag = 0.3f;
 
-
     public AudioClip worldMusicLoop;
 
     public Material staticHazardMaterial;

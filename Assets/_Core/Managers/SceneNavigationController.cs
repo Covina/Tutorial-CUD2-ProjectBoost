@@ -12,64 +12,40 @@ public class SceneNavigationController : MonoBehaviour
     private int currentLevelIndex = 0;
     public int CurrentLevelIndex
     {
-        get
-        {
-            return currentLevelIndex;
-        }
-        set
-        {
-            currentLevelIndex = value;
-        }
+        get { return currentLevelIndex; }
+        set { currentLevelIndex = value; }
     }
 
     private string currentSceneName;
     public string CurrentSceneName
     {
-        get
-        {
-            return currentSceneName;
-        }
-        set
-        {
-            currentSceneName = value;
-        }
+        get { return currentSceneName; }
+        set { currentSceneName = value; }
     }
 
     private int currentWorldIndex = 0;
-    public int CurrentWorldIndex
+    public int CurrentWorldIndex 
     {
-        get
-        {
-            return currentWorldIndex;
-        }
-        set
-        {
-            currentWorldIndex = value;
-        }
+        get { return currentWorldIndex; }
+        set { currentWorldIndex = value; }
     }
 
     // how many times the player has tried to complete the level
     private int attemptsTrackerValue = 1;
 
-
     private int currentLoadedLevelListIndex = 0;
     public int CurrentLoadedLevelListIndex { get; set; }
 
     private string currentLevelPackName;
-    public string CurrentLoadedLevelPackName {
-        get
-        {
-            return currentLevelPackName;
-        }
-        set {
-            currentLevelPackName = value;
-        }
+    public string CurrentLoadedLevelPackName
+    {
+        get { return currentLevelPackName; }
+        set { currentLevelPackName = value; }
     }
 
 
     List<string> levelList = new List<string>();
-
-
+    
     // Use this for initialization
     void Awake()
     {
@@ -153,14 +129,14 @@ public class SceneNavigationController : MonoBehaviour
         // Set World Meta File
         DataManager.Instance.SetCurrentWorldMetaFile(levelPackName);
 
-
         // Get the string list of level names
         levelList = DataManager.Instance.GetLevelList(levelPackName);
 
         //Debug.Log("levelList count: " + levelList.Count);
 
-        //// Reset the Content List Index Position
+        // Reset the Content List Index Position
         //currentLoadedLevelListIndex = 0;
+        currentLevelIndex = 0;
 
         // Load the first level based on index position
         SceneManager.LoadScene(levelList[0]);
@@ -173,15 +149,8 @@ public class SceneNavigationController : MonoBehaviour
     /// </summary>
 	public void LoadNextLevel()
     {
-        Debug.Log("LoadNextLevel() currentWorldIndex :: " + currentWorldIndex);
-
-        Debug.Log("LoadNextLevel() Called");
 
         SetCurrentSceneData();
-
-        Debug.Log("currentLevelIndex[" + currentLevelIndex + "] || levelList.Count - 1 [" + (levelList.Count - 1) + "]");
-
-        Debug.Log("LoadNextLevel() currentWorldIndex :: " + currentWorldIndex);
 
         // Check if we are at the last level?
         if (currentLevelIndex == levelList.Count - 1)
@@ -196,7 +165,7 @@ public class SceneNavigationController : MonoBehaviour
             // increment by 1
             int nextSceneIndex = currentLevelIndex + 1;
 
-            Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
+            //Debug.Log("LoadNextLevel() :: About to LoadNextLevel: " + nextSceneIndex);
 
             SceneManager.LoadScene(levelList[nextSceneIndex]);
 
@@ -206,7 +175,7 @@ public class SceneNavigationController : MonoBehaviour
 
     public void LoadNextWorld()
     {
-        Debug.Log("LoadNextWorld() - Last level detected");
+        //Debug.Log("LoadNextWorld() - Last level detected");
 
         //SetCurrentSceneData();
 
@@ -263,8 +232,6 @@ public class SceneNavigationController : MonoBehaviour
         }
         currentLevelIndex = levelList.IndexOf(currentSceneName);
         //Debug.Log("currentLevelIndex[" + currentLevelIndex + "]");
-
-
 
         //Debug.Log("Setting currentWorldIndex based on searching [" + currentLevelPackName + "]");
         // Get the current world index in the list

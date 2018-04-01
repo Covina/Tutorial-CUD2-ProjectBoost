@@ -8,6 +8,8 @@ public class LevelPackCard : MonoBehaviour {
 
     [SerializeField] private GameObject packImage;
     [SerializeField] private GameObject packTitle;
+    [SerializeField] private GameObject gravitySettingValue;
+
 
     public WorldSettings metaData;
 
@@ -18,6 +20,7 @@ public class LevelPackCard : MonoBehaviour {
 
         packTitle.GetComponent<TextMeshProUGUI>().text = metaData.worldName;
 
+        gravitySettingValue.GetComponent<TextMeshProUGUI>().text = GetGravitySettingValue();
 
     }
 	
@@ -25,4 +28,18 @@ public class LevelPackCard : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
+    private string GetGravitySettingValue()
+    {
+
+
+        float tmp = Mathf.Abs(metaData.gravityY / -9.81f);
+
+        string gravString = tmp.ToString("N1") + " G";
+
+        Debug.Log("GetGravitySettingValue() produced: " + gravString);
+
+        return gravString;
+    }
 }

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4396115599937896}
   - component: {fileID: 82915329987202772}
-  - component: {fileID: 114864377382517556}
   - component: {fileID: 114745237998013242}
   m_Layer: 0
   m_Name: GameManager
@@ -194,20 +193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allObjectivesCollectedSFX: {fileID: 8300000, guid: 49caa62bcbd844634880cf7f42639101,
     type: 3}
---- !u!114 &114864377382517556
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1376366575510620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b94b828b1d380f4e9ffaf037895efeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausePanel: {fileID: 1816162241540068, guid: 0178a223a0bcd4e4d8d54c86ee15a6e2, type: 2}
-  objectiveTextContainer: {fileID: 0}
-  objectivesCollectedTextValue: {fileID: 0}
 --- !u!114 &114875218700276416
 MonoBehaviour:
   m_ObjectHideFlags: 1

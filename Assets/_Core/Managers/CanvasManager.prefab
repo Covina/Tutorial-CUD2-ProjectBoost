@@ -51,3 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94b828b1d380f4e9ffaf037895efeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanelPrefab: {fileID: 0}
+  objectiveTextContainer: {fileID: 0}
+  objectivesCollectedTextValue: {fileID: 0}

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CanvasManager : MonoBehaviour {
 
 	//public static CanvasManager instance;
 
     // The level the player is currently on
-	private Text levelValueText;
+	private TextMeshProUGUI levelValueText;
 
     // Reference to the fuel Slider object
 	private Slider fuelSlider;
@@ -21,13 +22,12 @@ public class CanvasManager : MonoBehaviour {
     private Rocket rocketRef;
 
     [Header("Pop-Ups")]
-    [SerializeField] private GameObject pausePanel;
-    //[SerializeField] private GameObject spawnedPausePanel;
+    [SerializeField] private GameObject pausePanelPrefab;
 
     [Header("Objectives")]
     // References to the Objectives tracking
     [SerializeField] private GameObject objectiveTextContainer;
-    [SerializeField] private Text objectivesCollectedTextValue;
+    [SerializeField] private TextMeshProUGUI objectivesCollectedTextValue;
 
     // Reference for the LevelObjectives script.
     private LevelObjectives levelObjectives;
@@ -38,7 +38,9 @@ public class CanvasManager : MonoBehaviour {
     void Start ()
     {
         
-        levelValueText = GameObject.Find("LevelValue").GetComponent<Text>();
+        levelValueText = GameObject.Find("LevelValue").GetComponent<TextMeshProUGUI>();
+
+        //pausePanel.SetActive(false);
 
         // get reference
         objectiveTextContainer = GameObject.FindGameObjectWithTag("ObjectivesText");
@@ -61,6 +63,10 @@ public class CanvasManager : MonoBehaviour {
         UpdateObjectivesHUD();
 
         //Debug.Log("===== STARTING " + levelValueText + " ===== ");
+
+
+        pausePanelPrefab.SetActive(false);
+
 
     }
 
@@ -124,7 +130,11 @@ public class CanvasManager : MonoBehaviour {
     public void UpdateFuelHUD()
     {
 
-        fuelSlider.value = FindObjectOfType<Rocket>().FuelCurrentValue;
+        if(FindObjectOfType<Rocket>() != null)
+        {
+            fuelSlider.value = FindObjectOfType<Rocket>().FuelCurrentValue;
+        }
+        
 
     }
 
@@ -163,47 +173,26 @@ public class CanvasManager : MonoBehaviour {
     }
 
 
-    //public void PauseGame()
-    //{
-    //    // Freeze
-    //    Time.timeScale = 0f;
-
-    //    DisplayPausePanel();
-
-    //}
-
 
     public void DisplayPausePanel()
     {
         // Play entry animation
 
-        pausePanel.SetActive(true);
+        pausePanelPrefab.SetActive(true);
         Time.timeScale = 0f;
-
-        //pausePanel.GetComponent<Animator>().Play("display");
 
     }
 
     public void ClosePausePanel()
     {
 
-        pausePanel.SetActive(false);
+        Debug.Log("ClosePausePanel() called");
+
+        pausePanelPrefab.SetActive(false);
+
         Time.timeScale = 1f;
 
-        // resume game
-        //StartCoroutine(ResumeGame(0.5f));
 
     }
 
-    //IEnumerator ResumeGame(float delay)
-    //{
-    //    pausePanel.GetComponent<Animator>().Play("close");
-    //    yield return new WaitForSeconds(delay);
-
-    //     Resume
-    //    Time.timeScale = 1f;
-
-        
-
-    //}
 }
