@@ -195,9 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpawnPoint: {fileID: 1523574902720928}
-  projectileObject: {fileID: 1985077247835844, guid: 54736406cd5b798489a0c7a45dd2b07e,
+  projectileObject: {fileID: 1985077247835844, guid: 02db9b8f1f1465742b6db70c22897c29,
     type: 2}
   projectileContainer: {fileID: 1053110569467434}
   spawnEverySeconds: 2
   projectileSpeed: 25
-  directionVector: {x: 0, y: 1, z: 0}

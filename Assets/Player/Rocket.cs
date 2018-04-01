@@ -409,7 +409,7 @@ public class Rocket : MonoBehaviour {
     /// <param name="forceVector"></param>
     public void ApplyOutsideForceVector(Vector3 forceVector)
     {
-        Debug.Log("ApplyOutsideForceVector(" + forceVector + ") called.");
+        //Debug.Log("ApplyOutsideForceVector(" + forceVector + ") called.");
         rigidBody.AddForce(forceVector);
 
     }

@@ -89,7 +89,7 @@ public class FallingObject : MonoBehaviour {
 
         yield return new WaitForSeconds(animationTime);
 
-        Debug.Log("TTL for " + gameObject.name + ": " + ttl);
+        //Debug.Log("TTL for " + gameObject.name + ": " + ttl);
         // remove the rock
         Destroy(gameObject);
     }
