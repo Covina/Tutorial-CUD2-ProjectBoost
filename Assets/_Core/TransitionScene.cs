@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class TransitionScene : MonoBehaviour {
 
-    private SceneNavigationController snc;
-
     [SerializeField] private Text successText;
 
 	// Use this for initialization
 	void Start () {
 
-        snc = FindObjectOfType<SceneNavigationController>();
-
-        successText.text = "You've completed " + snc.CurrentLoadedLevelPackName + "!";
+        successText.text = "You've completed " + SceneNavigationController.Instance.CurrentLoadedLevelPackName + "!";
 
         StartCoroutine(NavToNext());
-	}
+
+
+        Debug.Log("transitionScene snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
+    }
 	
 
     public IEnumerator NavToNext()
@@ -25,9 +24,11 @@ public class TransitionScene : MonoBehaviour {
 
         yield return new WaitForSeconds(4.0f);
 
+        Debug.Log("transitionScene NavToNext() snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
+
         // load the first level in the next pack
         //snc.LoadNextLevel();
-        snc.LoadNextWorld();
+        SceneNavigationController.Instance.LoadNextWorld();
     }
 
 }

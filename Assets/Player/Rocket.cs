@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
+    [SerializeField] bool godMode = false;
   
     // multiplier on thrust
     //[SerializeField]
@@ -212,7 +213,11 @@ public class Rocket : MonoBehaviour {
 
 
         // Spend Fuel
-		SpendFuel(fuelConsumptionIncrement * Time.deltaTime);
+        if(!godMode)
+        {
+            SpendFuel(fuelConsumptionIncrement * Time.deltaTime);
+        }
+		
 
 
     }
@@ -280,6 +285,8 @@ public class Rocket : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
 
+        if (godMode) return;
+
         // Prevent extra processing if we're dead
         if (state != State.Alive || isCollisionsDisabled == true) { return; }
 
@@ -294,7 +301,7 @@ public class Rocket : MonoBehaviour {
 
             case "Hazard":
                // print("Rocket hit Hazard: " + collision.gameObject.name);
-                StartCoroutine( PlayerDeath() );
+                StartCoroutine(PlayerDeath());
                 break;
 
             case "Finish":

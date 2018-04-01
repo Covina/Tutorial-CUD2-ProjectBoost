@@ -55,14 +55,14 @@ public class SceneNavigationController : MonoBehaviour
     private int currentLoadedLevelListIndex = 0;
     public int CurrentLoadedLevelListIndex { get; set; }
 
-    private string currentLoadedLevelPackName;
+    private string currentLevelPackName;
     public string CurrentLoadedLevelPackName {
         get
         {
-            return currentLoadedLevelPackName;
+            return currentLevelPackName;
         }
         set {
-            currentLoadedLevelPackName = value;
+            currentLevelPackName = value;
         }
     }
 
@@ -148,7 +148,7 @@ public class SceneNavigationController : MonoBehaviour
         Debug.Log("LoadFirstLevelInPack(" + levelPackName + ") called");
 
         // Set which pack we're using
-        currentLoadedLevelPackName = levelPackName;
+        currentLevelPackName = levelPackName;
 
         // Set World Meta File
         DataManager.Instance.SetCurrentWorldMetaFile(levelPackName);
@@ -173,11 +173,15 @@ public class SceneNavigationController : MonoBehaviour
     /// </summary>
 	public void LoadNextLevel()
     {
+        Debug.Log("LoadNextLevel() currentWorldIndex :: " + currentWorldIndex);
+
         Debug.Log("LoadNextLevel() Called");
 
         SetCurrentSceneData();
 
-        
+        Debug.Log("currentLevelIndex[" + currentLevelIndex + "] || levelList.Count - 1 [" + (levelList.Count - 1) + "]");
+
+        Debug.Log("LoadNextLevel() currentWorldIndex :: " + currentWorldIndex);
 
         // Check if we are at the last level?
         if (currentLevelIndex == levelList.Count - 1)
@@ -202,27 +206,34 @@ public class SceneNavigationController : MonoBehaviour
 
     public void LoadNextWorld()
     {
-        Debug.Log("Last level detected");
+        Debug.Log("LoadNextWorld() - Last level detected");
+
+        //SetCurrentSceneData();
+
 
         // Is there another world?
         int nextWorldIndex = currentWorldIndex + 1;
 
-        if (DataManager.Instance.LevelPackList[nextWorldIndex] != null)
+        //Debug.Log("currentWorldIndex :: " + currentWorldIndex);
+        //Debug.Log("LoadNextWorld() - currentWorldIndex: " + currentWorldIndex);
+        //Debug.Log("LoadNextWorld() - nextWorldIndex: " + nextWorldIndex);
+
+        if(nextWorldIndex >= DataManager.Instance.LevelPackList.Count)
         {
-            // LOAD FIRST LEVEL IN NEXT WORLD
-            Debug.Log("Another world is available...");
+            // WE ARE AT THE VERY END... no more worlds nor levels
+            LoadEndCredits();
+        } 
+        else
+        {
 
             // get new world name
             string newWorldPackname = DataManager.Instance.LevelPackList[nextWorldIndex];
 
+            // LOAD FIRST LEVEL IN NEXT WORLD
+            //Debug.Log("LoadNextWorld() - Another world is available..." + newWorldPackname);
+
             // Load the first level
             LoadFirstLevelInPack(newWorldPackname);
-
-        }
-        else
-        {
-            // WE ARE AT THE VERY END... no more worlds nor levels
-            LoadEndCredits();
         }
     }
 
@@ -233,29 +244,33 @@ public class SceneNavigationController : MonoBehaviour
         currentSceneName = SceneManager.GetActiveScene().name;
         //Debug.Log("Setting currentSceneName[" + currentSceneName + "]");
 
+        //Debug.Log("SetCurrentSceneData() currentWorldIndex :: " + currentWorldIndex);
 
-        if (currentLoadedLevelPackName == null)
-        {
-            currentLoadedLevelPackName = FindWorldLevelPackname(currentSceneName);
-        }
-        //Debug.Log("currentLoadedLevelPackName[" + currentLoadedLevelPackName + "]");
+        //if (currentLoadedLevelPackName == null)
+        //{
+        //    currentLoadedLevelPackName = FindWorldLevelPackname(currentSceneName);
+        //}
+
+        currentLevelPackName = FindWorldLevelPackname(currentSceneName);
+
+        //Debug.Log("SetCurrentSceneData() - currentLoadedLevelPackName[" + currentLevelPackName + "]");
 
 
         // Set current levelList index number
         if (levelList.Count < 1)
         {
-            levelList = DataManager.Instance.GetLevelList(currentLoadedLevelPackName);
+            levelList = DataManager.Instance.GetLevelList(currentLevelPackName);
         }
         currentLevelIndex = levelList.IndexOf(currentSceneName);
         //Debug.Log("currentLevelIndex[" + currentLevelIndex + "]");
 
 
 
-
+        //Debug.Log("Setting currentWorldIndex based on searching [" + currentLevelPackName + "]");
         // Get the current world index in the list
-        currentWorldIndex = DataManager.Instance.LevelPackList.IndexOf(currentLoadedLevelPackName);
+        currentWorldIndex = DataManager.Instance.LevelPackList.IndexOf(currentLevelPackName);
 
-        //Debug.Log("currentWorldIndex[" + currentWorldIndex + "])");
+        //Debug.Log("SetCurrentSceneData() - currentWorldIndex[" + currentWorldIndex + "])");
 
         //Debug.Log("/////////////////////");
     }
@@ -274,15 +289,21 @@ public class SceneNavigationController : MonoBehaviour
     private string FindWorldLevelPackname(string sceneName)
     {
        
+        //Debug.Log("FindWorldLevelPackname(" + sceneName + ")");
+
         // Loop through each pair
-        foreach(KeyValuePair<string, List<string>> entry in DataManager.Instance.WorldLevelSceneDictionary)
+        foreach(KeyValuePair<string, List<string>> dictionaryEntry in DataManager.Instance.WorldLevelSceneDictionary)
         {
+
+            List<string> searchLevelList = dictionaryEntry.Value;
+
             // Loop through the list for the given key
-            foreach(string levelName in entry.Value)
+            foreach (string levelName in searchLevelList)
             {
                 if(levelName == sceneName)
                 {
-                    return entry.Key;
+                    //Debug.Log("FindWorldLevelPackname(" + sceneName + ") - found match level: returning [" + dictionaryEntry.Key + "]");
+                    return dictionaryEntry.Key;
                 }
 
             }

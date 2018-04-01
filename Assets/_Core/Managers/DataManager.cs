@@ -13,27 +13,30 @@ public class DataManager : MonoBehaviour {
     private List<string> levelPackList = new List<string>();
     public List<string> LevelPackList
     {
-        get
-        {
-            return levelPackList;
-        }
-
+        get { return levelPackList; }
     }
 
     public Dictionary<string, List<string>> worldLevelSceneDictionary = new Dictionary<string, List<string>>();
     public Dictionary<string, List<string>> WorldLevelSceneDictionary
     {
-        get
-        {
-            return worldLevelSceneDictionary;
-        }
-
+        get { return worldLevelSceneDictionary; }
     }
 
 
     public List<WorldSettings> worldMetaFiles;
 
     public WorldSettings currentWorldMetaFile;
+
+
+    // 
+    public string currentLoadedLevelPackName;
+
+
+
+
+
+
+
 
     void Awake()
     {
@@ -59,6 +62,7 @@ public class DataManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    // Store friendly searchable elements
     private void GenerateWorldLevelPackList()
     {
         levelPackList.Add(LEVELPACK01);
@@ -96,14 +100,6 @@ public class DataManager : MonoBehaviour {
         levelListPack02.Add("02_03");
         levelListPack02.Add("02_04");
         levelListPack02.Add("02_05");
-        //levelListPack01.Add("01_03");
-        //levelListPack01.Add("01_04");
-        //levelListPack01.Add("01_05");
-        //levelListPack01.Add("01_06");
-        //levelListPack01.Add("01_07");
-        //levelListPack01.Add("01_08");
-        //levelListPack01.Add("01_09");
-        //levelListPack01.Add("01_10");
 
         // Add it to the dictionary
         worldLevelSceneDictionary.Add(keyPack02, levelListPack02);
@@ -132,6 +128,7 @@ public class DataManager : MonoBehaviour {
         int index = levelPackList.IndexOf(searchVal);
 
         currentWorldMetaFile = worldMetaFiles[index];
+
 
     }
 
