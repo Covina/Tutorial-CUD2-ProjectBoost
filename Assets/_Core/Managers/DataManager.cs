@@ -31,7 +31,7 @@ public class DataManager : MonoBehaviour {
     }
 
 
-    public List<ScriptableObject> worldMetaFiles;
+    public List<WorldSettings> worldMetaFiles;
 
     public WorldSettings currentWorldMetaFile;
 
@@ -126,8 +126,12 @@ public class DataManager : MonoBehaviour {
     }
 
 
-    public void SetCurrentWorldMetaFile()
+    public void SetCurrentWorldMetaFile(string searchVal)
     {
+
+        int index = levelPackList.IndexOf(searchVal);
+
+        currentWorldMetaFile = worldMetaFiles[index];
 
     }
 

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingObjectSpawner : MonoBehaviour {
-    
+
 
     // Time delay
+    [Header("Spawner")]
     public float spawnEverySeconds;
+    public GameObject spawnContainer;
 
     [Header("Falling Object")]
     [SerializeField] private GameObject fallingObject;
@@ -47,21 +49,25 @@ public class FallingObjectSpawner : MonoBehaviour {
         //Debug.Log("SpawnRock called");
 
         // small randomization to rock spawn on the X
-        Transform objectSpawnTransform = transform;
+        //Transform objectSpawnTransform = transform;
 
         // small randomization in X axis
-        Vector3 temp = objectSpawnTransform.position;
-        temp.x += Random.Range(-3.0f, 3.0f);
-        objectSpawnTransform.position = temp;
-
-
-        // parent the object under Container
-        GameObject rock = Instantiate(fallingObject, objectSpawnTransform) as GameObject;
-
-        rock.GetComponent<FallingObject>().SetTTL(minSecondsAlive, maxSecondsAlive);
+        Vector3 fallingRockSpawnPosition = transform.position;
+        fallingRockSpawnPosition.x += Random.Range(-3.0f, 3.0f);
+    
+        // Spawn the falling object
+        GameObject rock = Instantiate(fallingObject) as GameObject;
 
         // house it in the holder
-        rock.transform.parent = GameObject.Find("RocksContainer").transform;
+        rock.transform.SetParent(spawnContainer.transform);
+
+        // move the rock a bit
+        rock.transform.position = fallingRockSpawnPosition;
+
+        // Set Time to Live
+        rock.GetComponent<FallingObject>().SetTTL(minSecondsAlive, maxSecondsAlive);
+
+
 
     }
 

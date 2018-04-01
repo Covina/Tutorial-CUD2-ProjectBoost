@@ -150,10 +150,14 @@ public class SceneNavigationController : MonoBehaviour
         // Set which pack we're using
         currentLoadedLevelPackName = levelPackName;
 
+        // Set World Meta File
+        DataManager.Instance.SetCurrentWorldMetaFile(levelPackName);
+
+
         // Get the string list of level names
         levelList = DataManager.Instance.GetLevelList(levelPackName);
 
-        Debug.Log("levelList count: " + levelList.Count);
+        //Debug.Log("levelList count: " + levelList.Count);
 
         //// Reset the Content List Index Position
         //currentLoadedLevelListIndex = 0;
