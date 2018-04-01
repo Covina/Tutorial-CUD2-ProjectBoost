@@ -203,4 +203,11 @@ public class CanvasManager : MonoBehaviour {
 
     }
 
+    public void DebugPauseToggle()
+    {
+
+        Time.timeScale = (Time.timeScale == 1.0f) ? 0.0f : 1.0f;
+
+    }
+
 }
