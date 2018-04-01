@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TransitionScene : MonoBehaviour {
+    // TODO - Update "completed" text o sue World Name
+
 
     [SerializeField] private Text successText;
 
@@ -13,7 +15,6 @@ public class TransitionScene : MonoBehaviour {
         successText.text = "You've completed " + SceneNavigationController.Instance.CurrentLoadedLevelPackName + "!";
 
         StartCoroutine(NavToNext());
-
 
         Debug.Log("transitionScene snc.CurrentWorldIndex:: " + SceneNavigationController.Instance.CurrentWorldIndex);
     }

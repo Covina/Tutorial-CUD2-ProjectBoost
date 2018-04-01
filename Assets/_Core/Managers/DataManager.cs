@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour {
 
@@ -122,14 +123,64 @@ public class DataManager : MonoBehaviour {
     }
 
 
-    public void SetCurrentWorldMetaFile(string searchVal)
+    public void SetCurrentWorldMetaFile(string levelPackName)
     {
 
-        int index = levelPackList.IndexOf(searchVal);
+        int index = levelPackList.IndexOf(levelPackName);
 
         currentWorldMetaFile = worldMetaFiles[index];
 
 
+    }
+
+    public float GetGravitySetting()
+    {
+        // Is the world value set?
+        if(currentWorldMetaFile == null)
+        {
+            string lpn = FindWorldLevelPackName(SceneManager.GetActiveScene().name);
+
+            SetCurrentWorldMetaFile(lpn);
+
+        }
+
+        // Pull gravity Value
+        float gravityY = currentWorldMetaFile.gravityY;
+
+        return gravityY;
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sceneName"></param>
+    /// <returns></returns>
+    public string FindWorldLevelPackName(string sceneName)
+    {
+
+        //Debug.Log("FindWorldLevelPackname(" + sceneName + ")");
+
+        // Loop through each pair
+        foreach (KeyValuePair<string, List<string>> dictionaryEntry in WorldLevelSceneDictionary)
+        {
+
+            List<string> searchLevelList = dictionaryEntry.Value;
+
+            // Loop through the list for the given key
+            foreach (string levelName in searchLevelList)
+            {
+                if (levelName == sceneName)
+                {
+                    //Debug.Log("FindWorldLevelPackname(" + sceneName + ") - found match level: returning [" + dictionaryEntry.Key + "]");
+                    return dictionaryEntry.Key;
+                }
+
+            }
+
+        }
+
+        return null;
     }
 
 }

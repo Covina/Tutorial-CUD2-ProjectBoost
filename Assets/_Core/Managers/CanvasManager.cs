@@ -77,14 +77,22 @@ public class CanvasManager : MonoBehaviour {
 		// Update the Fuel Gauge
 		UpdateFuelHUD();
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ProcessEscapeKey();
+        }
     }
 
 
+    private void ProcessEscapeKey()
+    {
+        DisplayPausePanel();
+    }
 
-	/// <summary>
-	/// Initializes the fuel gauge.
-	/// </summary>
-	private void InitializeFuelGauge ()
+    /// <summary>
+    /// Initializes the fuel gauge.
+    /// </summary>
+    private void InitializeFuelGauge ()
 	{
 
         rocketRef = FindObjectOfType<Rocket>();

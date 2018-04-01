@@ -399,11 +399,16 @@ public class Rocket : MonoBehaviour {
     private void ApplyWorldSettings()
     {
         // TODO - Get the current world meta data settings
-        WorldData worldData = FindObjectOfType<WorldData>();
+        //WorldData worldData = FindObjectOfType<WorldData>();
 
-        float gravitySetting = worldData.GetGravityY();
+        //WorldSettings temp = DataManager.Instance.currentWorldMetaFile;
 
-        //Debug.Log("ApplyWorldSettings(): " + gravitySetting);
+        //float gravitySetting = worldData.GetGravityY();
+        //float gravitySetting = temp.gravityY;
+
+        float gravitySetting = DataManager.Instance.GetGravitySetting();
+
+        Debug.Log("ApplyWorldSettings(): " + gravitySetting);
 
         // TODO - Update Gravity
         Physics.gravity = new Vector3(0, gravitySetting, 0);

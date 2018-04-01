@@ -418,8 +418,8 @@ Transform:
   - {fileID: 1445598942}
   - {fileID: 170598990}
   - {fileID: 1924679337}
-  - {fileID: 729349229}
   - {fileID: 877042378}
+  - {fileID: 729349229}
   - {fileID: 526224701}
   m_Father: {fileID: 1713806016}
   m_RootOrder: 0
@@ -1064,6 +1064,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114875218700276416, guid: 12003081b37ce9546869598d40c4bcba,
+        type: 2}
+      propertyPath: worldSettingsObject
+      value: 
+      objectReference: {fileID: 11400000, guid: eb763a04060e10e42a555c1e91e7b491,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12003081b37ce9546869598d40c4bcba, type: 2}
   m_IsPrefabParent: 0

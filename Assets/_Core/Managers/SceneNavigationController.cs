@@ -9,21 +9,21 @@ public class SceneNavigationController : MonoBehaviour
     public static SceneNavigationController Instance = null;
 
     // Current Scene Index
-    private int currentLevelIndex = 0;
+    private int currentLevelIndex = 0;              // Example: 0
     public int CurrentLevelIndex
     {
         get { return currentLevelIndex; }
         set { currentLevelIndex = value; }
     }
 
-    private string currentSceneName;
+    private string currentSceneName;                // Example: 01_01
     public string CurrentSceneName
     {
         get { return currentSceneName; }
         set { currentSceneName = value; }
     }
-
-    private int currentWorldIndex = 0;
+        
+    private int currentWorldIndex = 0;              // Example: 0
     public int CurrentWorldIndex 
     {
         get { return currentWorldIndex; }
@@ -33,10 +33,10 @@ public class SceneNavigationController : MonoBehaviour
     // how many times the player has tried to complete the level
     private int attemptsTrackerValue = 1;
 
-    private int currentLoadedLevelListIndex = 0;
+    private int currentLoadedLevelListIndex = 0;    // Example: 0
     public int CurrentLoadedLevelListIndex { get; set; }
 
-    private string currentLevelPackName;
+    private string currentLevelPackName;            // Example: LevelPack01
     public string CurrentLoadedLevelPackName
     {
         get { return currentLevelPackName; }
@@ -52,6 +52,8 @@ public class SceneNavigationController : MonoBehaviour
         MakeSingleton();
 
     }
+
+
 
 
     private void MakeSingleton()
@@ -220,7 +222,7 @@ public class SceneNavigationController : MonoBehaviour
         //    currentLoadedLevelPackName = FindWorldLevelPackname(currentSceneName);
         //}
 
-        currentLevelPackName = FindWorldLevelPackname(currentSceneName);
+        currentLevelPackName = DataManager.Instance.FindWorldLevelPackName(currentSceneName);
 
         //Debug.Log("SetCurrentSceneData() - currentLoadedLevelPackName[" + currentLevelPackName + "]");
 
@@ -252,33 +254,6 @@ public class SceneNavigationController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
-    private string FindWorldLevelPackname(string sceneName)
-    {
-       
-        //Debug.Log("FindWorldLevelPackname(" + sceneName + ")");
-
-        // Loop through each pair
-        foreach(KeyValuePair<string, List<string>> dictionaryEntry in DataManager.Instance.WorldLevelSceneDictionary)
-        {
-
-            List<string> searchLevelList = dictionaryEntry.Value;
-
-            // Loop through the list for the given key
-            foreach (string levelName in searchLevelList)
-            {
-                if(levelName == sceneName)
-                {
-                    //Debug.Log("FindWorldLevelPackname(" + sceneName + ") - found match level: returning [" + dictionaryEntry.Key + "]");
-                    return dictionaryEntry.Key;
-                }
-
-            }
-
-        }
-
-        return null;
-    }
 
 
 }
