@@ -13,7 +13,7 @@ public class FuelMonitor : MonoBehaviour {
 
     private Color defaultColor;
 
-    private Rocket player;
+    private Rocket player; 
 
     // Use this for initialization
     void Start () {

@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94b828b1d380f4e9ffaf037895efeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanel: {fileID: 1816162241540068, guid: 0178a223a0bcd4e4d8d54c86ee15a6e2, type: 2}
   objectiveTextContainer: {fileID: 0}
   objectivesCollectedTextValue: {fileID: 0}
 --- !u!114 &114875218700276416
@@ -218,5 +219,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccefd9d8c3ab62642b4813d898cc44ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldSettingsObject: {fileID: 11400000, guid: eb763a04060e10e42a555c1e91e7b491,
+  worldSettingsObject: {fileID: 11400000, guid: b982d8b6f5b95a74cbd65c9742416eb4,
     type: 2}

@@ -20,12 +20,19 @@ public class CanvasManager : MonoBehaviour {
     // Reference to the rocket itself;
     private Rocket rocketRef;
 
+    [Header("Pop-Ups")]
+    [SerializeField] private GameObject pausePanel;
+    //[SerializeField] private GameObject spawnedPausePanel;
+
+    [Header("Objectives")]
     // References to the Objectives tracking
     [SerializeField] private GameObject objectiveTextContainer;
     [SerializeField] private Text objectivesCollectedTextValue;
 
     // Reference for the LevelObjectives script.
     private LevelObjectives levelObjectives;
+
+    
 
     // Use this for initialization
     void Start ()
@@ -156,5 +163,47 @@ public class CanvasManager : MonoBehaviour {
     }
 
 
+    //public void PauseGame()
+    //{
+    //    // Freeze
+    //    Time.timeScale = 0f;
 
+    //    DisplayPausePanel();
+
+    //}
+
+
+    public void DisplayPausePanel()
+    {
+        // Play entry animation
+
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
+
+        //pausePanel.GetComponent<Animator>().Play("display");
+
+    }
+
+    public void ClosePausePanel()
+    {
+
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
+
+        // resume game
+        //StartCoroutine(ResumeGame(0.5f));
+
+    }
+
+    //IEnumerator ResumeGame(float delay)
+    //{
+    //    pausePanel.GetComponent<Animator>().Play("close");
+    //    yield return new WaitForSeconds(delay);
+
+    //     Resume
+    //    Time.timeScale = 1f;
+
+        
+
+    //}
 }
