@@ -138,12 +138,16 @@ public class DataManager : MonoBehaviour {
         // Is the world value set?
         if(currentWorldMetaFile == null)
         {
+            //Debug.Log("GetGravitySetting() : currentWorldMetaFile is null");
+
             string lpn = FindWorldLevelPackName(SceneManager.GetActiveScene().name);
 
+           // Debug.Log("GetGravitySetting() Calling SetCurrentWorldMetaFile(" + lpn + ")");
             SetCurrentWorldMetaFile(lpn);
 
         }
 
+        //Debug.Log("GetGravitySetting() Setting gravity to [" + currentWorldMetaFile.gravityY + "]");
         // Pull gravity Value
         float gravityY = currentWorldMetaFile.gravityY;
 
