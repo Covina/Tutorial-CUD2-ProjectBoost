@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65315402880201474}
   - component: {fileID: 23735637851092058}
   - component: {fileID: 114636825465323230}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hazard
   m_TagString: Hazard
   m_Icon: {fileID: 0}

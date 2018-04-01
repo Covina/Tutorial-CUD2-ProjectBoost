@@ -11,7 +11,7 @@ public class StaticHazard : MonoBehaviour {
 
         worldSettings = DataManager.Instance.currentWorldMetaFile;
 
-        if(worldSettings.staticHazardMaterial != null)
+        if(worldSettings != null)
         {
             Material newMaterial = worldSettings.staticHazardMaterial;
 
