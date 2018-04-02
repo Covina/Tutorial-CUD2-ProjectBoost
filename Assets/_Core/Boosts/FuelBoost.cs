@@ -50,10 +50,10 @@ public class FuelBoost : MonoBehaviour {
 	private void AddFuel (float amount)
 	{
         // get reference to rocket
-        Rocket temp = FindObjectOfType<Rocket>();
+        //Rocket temp = FindObjectOfType<Rocket>();
 
         // Add fuel, capping it at the max
-        temp.FuelCurrentValue = Mathf.Clamp (temp.FuelCurrentValue + amount, temp.FuelMinCapacity, temp.FuelMaxCapacity);
+        rocketPlayer.FuelCurrentValue = Mathf.Clamp (rocketPlayer.FuelCurrentValue + amount, rocketPlayer.FuelMinCapacity, rocketPlayer.FuelMaxCapacity);
 
 	}
 

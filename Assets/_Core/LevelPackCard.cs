@@ -38,7 +38,7 @@ public class LevelPackCard : MonoBehaviour {
 
         string gravString = tmp.ToString("N1") + " G";
 
-        Debug.Log("GetGravitySettingValue() produced: " + gravString);
+        //Debug.Log("GetGravitySettingValue() produced: " + gravString);
 
         return gravString;
     }

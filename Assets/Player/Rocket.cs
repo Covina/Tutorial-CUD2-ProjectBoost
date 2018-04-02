@@ -408,7 +408,7 @@ public class Rocket : MonoBehaviour {
 
         float gravitySetting = DataManager.Instance.GetGravitySetting();
 
-        Debug.Log("ApplyWorldSettings(): " + gravitySetting);
+        //Debug.Log("ApplyWorldSettings(): " + gravitySetting);
 
         // TODO - Update Gravity
         Physics.gravity = new Vector3(0, gravitySetting, 0);

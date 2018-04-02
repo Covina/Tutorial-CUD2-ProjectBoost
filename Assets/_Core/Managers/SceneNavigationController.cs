@@ -123,7 +123,7 @@ public class SceneNavigationController : MonoBehaviour
     /// </summary>
     public void LoadFirstLevelInPack(string levelPackName)
     {
-        Debug.Log("LoadFirstLevelInPack(" + levelPackName + ") called");
+        //Debug.Log("LoadFirstLevelInPack(" + levelPackName + ") called");
 
         // Set which pack we're using
         currentLevelPackName = levelPackName;
