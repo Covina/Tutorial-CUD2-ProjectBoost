@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/WorldLobby.unity
     guid: 06a13763203888b48a440fd1445a8bb9
   - enabled: 1
+    path: Assets/_Scenes/LevelSelect.unity
+    guid: 87a2eba958745e44db5027e18c574861
+  - enabled: 1
     path: Assets/_Scenes/ContentPacks/LevelPack01/Levels/01_01.unity
     guid: c3b6412a19572f1498dcf7b6457da95f
   - enabled: 1

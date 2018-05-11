@@ -235,6 +235,14 @@ Prefab:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 1651242763241768, guid: cb653f674d23aa14683e28648ecb9e90, type: 2}
+      propertyPath: m_Name
+      value: Text_CompanyName
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714413498051092, guid: cb653f674d23aa14683e28648ecb9e90, type: 2}
+      propertyPath: m_Name
+      value: Text_GameName
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb653f674d23aa14683e28648ecb9e90, type: 2}
   m_IsPrefabParent: 0
@@ -737,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a813b9206482c3429fcb2e8bdb11091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitPopUpPrefab: {fileID: 1832208766}
+  quitPopUp: {fileID: 1832208766}
 --- !u!1 &1929052972
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +961,10 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816162241540068, guid: 21b37b4eb09fd5648baf0e9ccab36a59, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21b37b4eb09fd5648baf0e9ccab36a59, type: 2}

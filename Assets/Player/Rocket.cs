@@ -6,18 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
-    [SerializeField] bool godMode = false;
-  
-    // multiplier on thrust
-    //[SerializeField]
-    private float thrustBoost = 200.0f;
+    [Header("Config")]
+    [SerializeField] private float thrustBoost = 200.0f;                // multiplier on thrust
+    [SerializeField] private float fuelConsumptionIncrement = 0.75f;    // fuel burn rate
+    [SerializeField] private float rotationSpeed = 110.0f;              // how fast it should rotate
+   
+    public float FuelMaxCapacity = 8.0f;    // Fuel tank Min and Max Capacities
+    public float FuelMinCapacity = 0.0f;
 
-    // how much fuel should we burn
-    private float fuelConsumptionIncrement = 0.75f;
 
-    // how fast it should rotate
-    //[SerializeField]
-    private float rotationBoost = 110.0f;
+    [Header("Loading")]
+    [SerializeField] float deathLoadDelay = 3.0f;
+    [SerializeField] float levelLoadDelay = 2.0f;
+
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip mainEngine;          // SFX: Thrust
+    [SerializeField] private AudioClip explosion;           // Explosion
+    [SerializeField] private AudioClip levelSuccess;        // Success
+
+    // Particle effects for Rocket Ship
+    [Header("Particle Effects")]
+    [SerializeField] private ParticleSystem mainEngineParticles;
+    [SerializeField] private ParticleSystem successParticles;
+    [SerializeField] private ParticleSystem deathParticles;
+
+
+
+    // COMPONENT REFERENCES
 
     // The Rocket Ship
     private Rigidbody rigidBody;
@@ -25,23 +41,6 @@ public class Rocket : MonoBehaviour {
     // to play the thrust sound
     private AudioSource audioSource;
 
-    // SFX: Thrust
-    [SerializeField] AudioClip mainEngine;
-
-    // Explosion
-    [SerializeField] AudioClip explosion;
-
-    // Success
-    [SerializeField] AudioClip levelSuccess;
-
-    // Particle effects for Rocket Ship
-    [SerializeField] private ParticleSystem mainEngineParticles;
-    [SerializeField] private ParticleSystem successParticles;
-    [SerializeField] private ParticleSystem deathParticles;
-
-    // Load delays
-    [SerializeField] float deathLoadDelay = 3.0f;
-    [SerializeField] float levelLoadDelay = 2.0f;
 
     private bool isCollisionsDisabled = false;
 
@@ -50,9 +49,7 @@ public class Rocket : MonoBehaviour {
     // if player runs out of thrust, explode them after 5 seconds
     private float emptyThrustExplosionDelay = 8.0f;
 
-    // Fuel tank Min and Max Capacities
-    public float FuelMaxCapacity = 8.0f;
-    public float FuelMinCapacity = 0.0f;
+
 
     // Get/Set for current fuel value;
     private float fuelCurrentValue;
@@ -95,7 +92,6 @@ public class Rocket : MonoBehaviour {
     }
 
 
-    // Game States
     public enum State
     {
         Alive,
@@ -104,7 +100,10 @@ public class Rocket : MonoBehaviour {
 
     }
 
+    [Header("States")]
     public State state = State.Alive;
+    [SerializeField] bool godMode = false;
+
 
     private void Awake()
     {
@@ -143,26 +142,7 @@ public class Rocket : MonoBehaviour {
 
     }
 
-    /// <summary>
-    /// Respond to the debug key shortcuts
-    /// </summary>
-    private void RespondToDebugKeys()
-    {
 
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-
-            // load next level
-            
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-
-            // toggle collisions
-            isCollisionsDisabled = !isCollisionsDisabled;
-        }
-
-    }
 
     /// <summary>
     /// Apply thrust when player is pressing the SPACE bar
@@ -170,7 +150,7 @@ public class Rocket : MonoBehaviour {
     public void RespondToThrustInput ()
 	{
 		// check for thrust
-		if (Input.GetKey (KeyCode.Space) || isThrusting == true) {
+		if (isThrusting == true) {
 
             // check fuel
 			if (fuelCurrentValue > 0) {
@@ -219,7 +199,6 @@ public class Rocket : MonoBehaviour {
         }
 		
 
-
     }
 
     /// <summary>
@@ -259,16 +238,16 @@ public class Rocket : MonoBehaviour {
         // Remove physics due to rotation
         rigidBody.angularVelocity = Vector3.zero;
 
-        float rotationSpeed = Time.deltaTime * rotationBoost;
+        float rotationSpeed = Time.deltaTime * this.rotationSpeed;
 
         // check for left tilt
-        if (Input.GetKey(KeyCode.LeftArrow) || isRotatingLeft == true)
+        if (isRotatingLeft == true)
         {
             // Rotate to the left
             transform.Rotate(Vector3.forward * rotationSpeed);
 
         }
-		else if (Input.GetKey(KeyCode.RightArrow) || isRotatingRight == true)
+		else if (isRotatingRight == true)
         {
             // Rotate to the right
             transform.Rotate(-Vector3.forward * rotationSpeed);
@@ -460,6 +439,27 @@ public class Rocket : MonoBehaviour {
 
     public void RemoveConstantForce()
     {
+
+    }
+
+    /// <summary>
+    /// Respond to the debug key shortcuts
+    /// </summary>
+    private void RespondToDebugKeys()
+    {
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+
+            // load next level
+
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+
+            // toggle collisions
+            isCollisionsDisabled = !isCollisionsDisabled;
+        }
 
     }
 

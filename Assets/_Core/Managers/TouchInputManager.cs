@@ -8,13 +8,48 @@ public class TouchInputManager : MonoBehaviour, IPointerUpHandler, IPointerDownH
 
 	private Rocket rocket;
 
-
 	void Start()
 	{
 		// Get reference to the player rocket
 		rocket = GameObject.FindObjectOfType<Rocket>();
 
 	}
+
+
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            // Apply thrust
+            rocket.IsThrusting = true;
+
+        } else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            // Stop thrust
+            rocket.IsThrusting = false;
+        }
+
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            rocket.IsRotatingLeft = true;
+
+        } else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            rocket.IsRotatingLeft = false;
+        }
+
+
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            rocket.IsRotatingRight = true;
+
+        } else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            rocket.IsRotatingRight = false;
+        }
+
+    }
+
 
     // built in to detect on press
     public void OnPointerDown(PointerEventData eventData)

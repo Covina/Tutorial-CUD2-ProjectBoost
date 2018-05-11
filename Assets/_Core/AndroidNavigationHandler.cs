@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class AndroidNavigationHandler : MonoBehaviour {
 
-    [SerializeField] GameObject quitPopUpPrefab;
+    [SerializeField] private GameObject quitPopUp;
 
     // Use this for initialization
     void Start()
     {
-        quitPopUpPrefab.SetActive(false);
+        quitPopUp.SetActive(false);
 
     }
 	
@@ -29,7 +29,7 @@ public class AndroidNavigationHandler : MonoBehaviour {
         {
             // Display Quit App pop-up
             Debug.Log("Escape key pressed");
-            quitPopUpPrefab.SetActive(true);
+            quitPopUp.SetActive(true);
         }
     }
 

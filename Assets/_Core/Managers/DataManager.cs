@@ -33,9 +33,27 @@ public class DataManager : MonoBehaviour {
     public string currentLoadedLevelPackName;
 
 
+    // Store World -> Level Data
+    private Dictionary<int, List<LevelCard>> levelDataMaster = new Dictionary<int, List<LevelCard>>();
+
+    public Dictionary<int, List<LevelCard>> LevelDataMaster
+    {
+        get
+        {
+            return levelDataMaster;
+        }
+    }
+
+    public List<LevelCard> SingleLevelList
+    {
+        get
+        {
+            return levelDataMaster[CurrentSelectedWorldID];
+        }
+    }
 
 
-
+    public int CurrentSelectedWorldID = 0;
 
 
 
@@ -46,6 +64,9 @@ public class DataManager : MonoBehaviour {
         GenerateWorldLevelPackList();
 
         GenerateWorldLevelDictionary();
+
+        // NEW for May 20 2018
+        PopulateLevelData();
 
     }
 
@@ -104,6 +125,46 @@ public class DataManager : MonoBehaviour {
 
         // Add it to the dictionary
         worldLevelSceneDictionary.Add(keyPack02, levelListPack02);
+    }
+
+
+    private void PopulateLevelData()
+    {
+        // Earth 2160
+        List<LevelCard> listOfCards0 = new List<LevelCard>() {
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_01", sceneLevelName = "Test01", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_02", sceneLevelName = "Test02", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_03", sceneLevelName = "Test03", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_04", sceneLevelName = "Test04", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_05", sceneLevelName = "Test05", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_06", sceneLevelName = "Test06", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_07", sceneLevelName = "Test07", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_08", sceneLevelName = "Test08", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_09", sceneLevelName = "Test09", isLocked = false },
+            new LevelCard() { worldID = 0, worldName = "Earth 2160", sceneFileName = "01_10", sceneLevelName = "Test10", isLocked = false }
+        };
+
+        // Add Earth 2160
+        levelDataMaster.Add(0, listOfCards0);
+
+
+        // Mercury
+        List<LevelCard> listOfCards1 = new List<LevelCard>() {
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_01", sceneLevelName = "Test21", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_02", sceneLevelName = "Test22", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_03", sceneLevelName = "Test23", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_04", sceneLevelName = "Test24", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_05", sceneLevelName = "Test25", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_06", sceneLevelName = "Test26", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_07", sceneLevelName = "Test27", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_08", sceneLevelName = "Test28", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_09", sceneLevelName = "Test29", isLocked = false },
+            new LevelCard() { worldID = 1, worldName = "Mercury", sceneFileName = "02_10", sceneLevelName = "Test30", isLocked = false }
+        };
+
+        // Add Earth 2160
+        levelDataMaster.Add(1, listOfCards1);
+
     }
 
     /// <summary>
